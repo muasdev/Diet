@@ -1,0 +1,41 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.muasmakkode.diet.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView_judulhalamanFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/hello_blank_fragment"
+            android:textSize="40sp" />
+
+        <ProgressBar
+            android:id="@+id/progresBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="332dp"
+            android:layout_height="40dp"
+            android:progressDrawable="@drawable/myprogressbar"
+            android:layout_below="@+id/textView_judulhalamanFragment"
+            android:layout_margin="20dp"
+            android:maxHeight="40dp" />
+
+        <TextView
+            android:id="@+id/textView_totalkalori"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="progress"
+            android:textSize="20sp"
+            android:padding="8dp"
+            android:layout_alignTop="@+id/progresBar"/>
+    </RelativeLayout>
+
+</FrameLayout>

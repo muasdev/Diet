@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Layout for the editor -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context=".KonsulAwalActivity">
+
+
+    <!-- Overview category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_overview" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
+
+            <!-- Name field -->
+            <EditText
+                android:id="@+id/edit_user_name"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_user_name"
+                android:inputType="textCapWords" />
+
+            <!-- Breed field -->
+            <EditText
+                android:id="@+id/edit_user_umur"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_user_umur"
+                android:inputType="textCapWords" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Gender category -->
+    <LinearLayout
+        android:id="@+id/container_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_gender" />
+
+
+        <!-- Input field -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <!-- Gender radio button -->
+            <RadioGroup
+                android:id="@+id/radio_grup_jenis_kelamin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radio_button_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="16dp"
+                    android:text="Male" />
+
+                <RadioButton
+                    android:id="@+id/radio_button_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="16dp"
+                    android:text="Female" />
+
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Measurement category -->
+    <LinearLayout
+        android:id="@+id/container_measurement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_measurement" />
+
+        <!-- Input fields -->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:paddingLeft="4dp">
+
+            <!-- Weight field -->
+            <EditText
+                android:id="@+id/edit_user_berat"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_user_berat"
+                android:inputType="number" />
+
+            <!-- Units for weight (kg) -->
+            <TextView
+                android:id="@+id/label_berat_unit"
+                style="@style/EditorUnitsStyle"
+                android:text="@string/unit_user_berat" />
+
+            <!-- Weight field -->
+            <EditText
+                android:id="@+id/edit_tinggi_user"
+                style="@style/EditorFieldStyle"
+                android:layout_below="@+id/edit_user_berat"
+                android:hint="@string/hint_user_tinggi"
+                android:inputType="number" />
+
+            <!-- Units for weight (kg) -->
+            <TextView
+                android:id="@+id/label_tinggi_unit"
+                style="@style/EditorUnitsStyle"
+                android:layout_below="@+id/edit_user_berat"
+                android:text="@string/unit_user_tinggi" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!-- Gender category -->
+    <LinearLayout
+        android:id="@+id/container_aktivitas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_aktifitas" />
+
+
+        <!-- Input field -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingTop="8dp">
+
+            <!-- Gender radio button -->
+            <RadioGroup
+                android:id="@+id/radio_grup_jenis_aktifitas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radio_button_ringan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="16dp"
+                    android:text="Ringan" />
+
+                <RadioButton
+                    android:id="@+id/radio_button_sedang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="16dp"
+                    android:text="Sedang" />
+
+                <RadioButton
+                    android:id="@+id/radio_button_berat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="16dp"
+                    android:text="Berat" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_simpan"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border_button"
+            android:text="simpan"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/button_tampilkan"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border_button"
+            android:text="tampilkan"
+            android:textColor="@color/colorPrimaryDark" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_Nama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="nama" />
+
+    <TextView
+        android:id="@+id/textView_Umur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="umur" />
+
+    <TextView
+        android:id="@+id/textView_jKelamin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="jenis kelamin" />
+
+    <TextView
+        android:id="@+id/textView_beratBadan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="berat badan" />
+
+    <TextView
+        android:id="@+id/textView_tinggiBadan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="tinggi badan" />
+
+    <TextView
+        android:id="@+id/textView_jenisAktifitas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="jenis aktifitas" />
+</LinearLayout>
+
