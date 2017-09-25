@@ -29,20 +29,6 @@ public class DetailMakanan extends AppCompatActivity {
     TextView textViewDetailProtein;
     @BindView(R.id.textView_detail_lemak)
     TextView textViewDetailLemak;
-    @BindView(R.id.spinner)
-    Spinner spinner;
-
-    private String[] germanFeminine = {
-            "Karin",
-            "Ingrid", "Helga",
-            "Renate",
-            "Elke",
-            "Ursula",
-            "Erika",
-            "Christa",
-            "Gisela",
-            "Monika"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,23 +44,6 @@ public class DetailMakanan extends AppCompatActivity {
         textViewDetailProtein.setText(makananModel.getProtein_makanan());
         textViewDetailLemak.setText(makananModel.getLemak_makanan());
 
-        // inisialiasi Array Adapter dengan memasukkan string array di atas
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, germanFeminine);
-
-        // mengeset Array Adapter tersebut ke Spinner
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(DetailMakanan.this, "dipilih " + adapter.getItem(i), Toast.LENGTH_SHORT).show();
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
     }
 
