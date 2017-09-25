@@ -57,4 +57,11 @@
 
     <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
     <string name="gender_female">Female</string>
+
+    <string-array name="jumlah_sajian">
+        <item>a</item>
+        <item>b</item>
+    </string-array>
+
+
 </resources>

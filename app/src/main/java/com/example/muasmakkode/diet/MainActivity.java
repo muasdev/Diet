@@ -127,8 +127,10 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_makanan) {
 
-            Intent intent = new Intent(this, KonsulAwalActivity.class);
-            startActivity(intent);
+            MakananFragment makananFragment = new MakananFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.framelayout, makananFragment);
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_riwayat) {
 
