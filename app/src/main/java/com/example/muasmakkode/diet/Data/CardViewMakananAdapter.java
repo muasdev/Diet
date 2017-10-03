@@ -47,7 +47,7 @@ public class CardViewMakananAdapter extends RecyclerView.Adapter<CardViewMakanan
         MakananModel makananModel = getListMakanan().get(position);
 
         holder.tvNama.setText(makananModel.getNama_makanan());
-        holder.tvJenisMakanan.setText(makananModel.getJenis_makanan());
+        holder.tvJenisMakanan.setText(makananModel.getUkuran_saji());
         holder.tvKaloriMakanan.setText(makananModel.getKalori_makanan());
     }
 

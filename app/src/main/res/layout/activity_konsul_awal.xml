@@ -78,14 +78,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="16dp"
-                    android:text="Male" />
+                    android:text="Laki-laki" />
 
                 <RadioButton
                     android:id="@+id/radio_button_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="16dp"
-                    android:text="Female" />
+                    android:text="Perempuan" />
 
             </RadioGroup>
         </LinearLayout>
@@ -114,11 +114,15 @@
             <EditText
                 android:id="@+id/edit_user_berat"
                 style="@style/EditorFieldStyle"
+                android:layout_width="120dp"
                 android:hint="@string/hint_user_berat"
                 android:inputType="number" />
 
+
+
             <!-- Units for weight (kg) -->
             <TextView
+                android:layout_toRightOf="@+id/edit_user_berat"
                 android:id="@+id/label_berat_unit"
                 style="@style/EditorUnitsStyle"
                 android:text="@string/unit_user_berat" />
@@ -127,12 +131,14 @@
             <EditText
                 android:id="@+id/edit_tinggi_user"
                 style="@style/EditorFieldStyle"
+                android:layout_width="120dp"
                 android:layout_below="@+id/edit_user_berat"
                 android:hint="@string/hint_user_tinggi"
                 android:inputType="number" />
 
             <!-- Units for weight (kg) -->
             <TextView
+                android:layout_toRightOf="@+id/edit_tinggi_user"
                 android:id="@+id/label_tinggi_unit"
                 style="@style/EditorUnitsStyle"
                 android:layout_below="@+id/edit_user_berat"
@@ -189,69 +195,25 @@
                     android:paddingRight="16dp"
                     android:text="Berat" />
             </RadioGroup>
+
+            <Button
+                android:id="@+id/button_detil_aktifitas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:textAllCaps="false"
+                android:text="detail" />
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/button_simpan"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/border_button"
+        android:text="simpan"
+        android:textColor="@color/colorPrimaryDark" />
 
-        <Button
-            android:id="@+id/button_simpan"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/border_button"
-            android:text="simpan"
-            android:textColor="@color/colorPrimaryDark" />
-
-        <Button
-            android:id="@+id/button_tampilkan"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/border_button"
-            android:text="tampilkan"
-            android:textColor="@color/colorPrimaryDark" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView_Nama"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="nama" />
-
-    <TextView
-        android:id="@+id/textView_Umur"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="umur" />
-
-    <TextView
-        android:id="@+id/textView_jKelamin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="jenis kelamin" />
-
-    <TextView
-        android:id="@+id/textView_beratBadan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="berat badan" />
-
-    <TextView
-        android:id="@+id/textView_tinggiBadan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="tinggi badan" />
-
-    <TextView
-        android:id="@+id/textView_jenisAktifitas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="jenis aktifitas" />
 </LinearLayout>
-

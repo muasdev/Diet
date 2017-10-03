@@ -22,6 +22,8 @@
         <activity android:name=".SettingFragment" />
         <activity android:name=".KonsulAwalActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".Coba" />
+        <activity android:name=".DetilAktifitas" />
         <activity android:name=".UI.DetailMakanan"></activity>
     </application>
 

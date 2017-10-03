@@ -3,13 +3,11 @@ package com.example.muasmakkode.diet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.muasmakkode.diet.Data.SharedPref;
@@ -41,28 +39,14 @@ public class KonsulAwalActivity extends AppCompatActivity {
     @BindView(R.id.container_aktivitas)
     LinearLayout containerAktivitas;
 
-    double rumusAmb;
-    double totalEnergi;
     @BindView(R.id.button_simpan)
     Button buttonSimpan;
-    @BindView(R.id.button_tampilkan)
-    Button buttonTampilkan;
-    @BindView(R.id.textView_Nama)
-    TextView textViewNama;
-    @BindView(R.id.textView_Umur)
-    TextView textViewUmur;
-    @BindView(R.id.textView_jKelamin)
-    TextView textViewJKelamin;
-    @BindView(R.id.textView_beratBadan)
-    TextView textViewBeratBadan;
-    @BindView(R.id.textView_tinggiBadan)
-    TextView textViewTinggiBadan;
-    @BindView(R.id.textView_jenisAktifitas)
-    TextView textViewJenisAktifitas;
     @BindView(R.id.radio_grup_jenis_kelamin)
     RadioGroup radioGrupJenisKelamin;
     @BindView(R.id.radio_grup_jenis_aktifitas)
     RadioGroup radioGrupJenisAktifitas;
+    @BindView(R.id.button_detil_aktifitas)
+    Button buttonDetilAktifitas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,23 +57,23 @@ public class KonsulAwalActivity extends AppCompatActivity {
         SharedPref.init(getApplicationContext());
     }
 
-    RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener =
-            new RadioGroup.OnCheckedChangeListener(){
-
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                    RadioButton checkedRadioButton = radioGrupJenisKelamin.findViewById(checkedId);
-                    int checkedIndex = radioGrupJenisKelamin.indexOfChild(checkedRadioButton);
-
-                    SharedPref.write(SharedPref.JENIS_KELAMIN, 0);
-                    RadioButton savedCheckedRadioButton = (RadioButton)radioGrupJenisKelamin.getChildAt(checkedIndex);
-                    savedCheckedRadioButton.setChecked(true);
-
-                    textViewJKelamin.setText(checkedIndex);
-
-                    Toast.makeText(getBaseContext(), "berhasil disimpan", Toast.LENGTH_SHORT).show();
-                }};
+//    RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener =
+//            new RadioGroup.OnCheckedChangeListener(){
+//
+//                @Override
+//                public void onCheckedChanged(RadioGroup group, int checkedId) {
+//
+//                    RadioButton checkedRadioButton = radioGrupJenisKelamin.findViewById(checkedId);
+//                    int checkedIndex = radioGrupJenisKelamin.indexOfChild(checkedRadioButton);
+//
+//                    SharedPref.write(SharedPref.JENIS_KELAMIN, 0);
+//                    RadioButton savedCheckedRadioButton = (RadioButton)radioGrupJenisKelamin.getChildAt(checkedIndex);
+//                    savedCheckedRadioButton.setChecked(true);
+//
+//                    textViewJKelamin.setText(checkedIndex);
+//
+//                    Toast.makeText(getBaseContext(), "berhasil disimpan", Toast.LENGTH_SHORT).show();
+//                }};
 
 
     @OnClick(R.id.button_simpan)
@@ -102,27 +86,20 @@ public class KonsulAwalActivity extends AppCompatActivity {
         SharedPref.write(SharedPref.TINGGI_BADAN, editTinggiUser.getText().toString());
         SharedPref.write(SharedPref.JENIS_AKTIFITAS, radioGrupJenisAktifitas.isEnabled());
 
-        Toast.makeText(this, "berhasil disimpan", Toast.LENGTH_SHORT).show();
+        if (editUserName.getText().toString().isEmpty() || editUserUmur.getText().toString().isEmpty() ||
+                editTinggiUser.getText().toString().isEmpty() || editTinggiUser.getText().toString().isEmpty()
+                ) {
+
+            Toast.makeText(this, "harap lengkapi isian yang ada di atas", Toast.LENGTH_SHORT).show();
+        } else {
+
+            Toast.makeText(this, "berhasil disimpan", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    @OnClick(R.id.button_tampilkan)
-    public void onButtonTampilkanClicked() {
-
-        //panggil sharedpreferences di variabel
-        String nama = SharedPref.read(SharedPref.NAMA, "");
-        String umur = SharedPref.read(SharedPref.UMUR, "");
-        String beratBadan = SharedPref.read(SharedPref.BERAT_BADAN, "");
-        String tinggiBadan = SharedPref.read(SharedPref.TINGGI_BADAN, "");
-
-
-
-        //tampilkan di textview
-        textViewNama.setText(nama);
-        textViewUmur.setText(umur);
-        textViewBeratBadan.setText(beratBadan);
-        textViewTinggiBadan.setText(tinggiBadan);
-
+    @OnClick(R.id.button_detil_aktifitas)
+    public void onViewClicked() {
+        Intent intent = new Intent(this, DetilAktifitas.class);
+        startActivity(intent);
     }
-
-
 }

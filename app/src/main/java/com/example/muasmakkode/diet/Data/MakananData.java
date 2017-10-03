@@ -12,30 +12,66 @@ public class MakananData {
      * buat kelas data
      */
     public static String[][] data = new String[][]{
-            {"Nasi Putih",
-                    "karbo",
-                    "175",
-            "20",
-            "50",
-            "60"},
-            {"Daging Ayam",
+            {
+                    "Nasi Putih",
+                    "1 gelas",
+                    "394.5",
+                    "40",
+                    "4",
+                    "0"
+            },
+            {
+                    "Daging Ayam",
                     "protein",
                     "50",
                     "20",
                     "50",
                     "60"},
-            {"Telur Ayam",
+            {
+                    "Telur Ayam",
                     "protein",
                     "75",
                     "20",
                     "50",
-                    "60"},
+                    "60"
+            },
             {"Nasi Putih",
                     "karbo",
                     "175",
                     "20",
                     "50",
+                    "60"
+            },
+            {
+                    "Nasi Putih",
+                    "1 gelas",
+                    "394.5",
+                    "40",
+                    "4",
+                    "0"
+            },
+            {
+                    "Daging Ayam",
+                    "protein",
+                    "50",
+                    "20",
+                    "50",
                     "60"},
+            {
+                    "Telur Ayam",
+                    "protein",
+                    "75",
+                    "20",
+                    "50",
+                    "60"
+            },
+            {"Nasi Putih",
+                    "karbo",
+                    "175",
+                    "20",
+                    "50",
+                    "60"
+            },
     };
 
     /**
@@ -48,7 +84,7 @@ public class MakananData {
         for (int i = 0; i <data.length; i++) {
             makanan = new MakananModel();
             makanan.setNama_makanan(data[i][0]);
-            makanan.setJenis_makanan(data[i][1]);
+            makanan.setUkuran_saji(data[i][1]);
             makanan.setKalori_makanan(data[i][2]);
             makanan.setKarbo_makanan(data[i][3]);
             makanan.setProtein_makanan(data[i][4]);

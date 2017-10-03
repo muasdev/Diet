@@ -74,7 +74,7 @@ public class MakananFragment extends Fragment {
     private void showSelectedMakanan(MakananModel makananModel) {
         Intent i = new Intent(getContext(), DetailMakanan.class);
         makananModel.getNama_makanan();
-        makananModel.getJenis_makanan();
+        makananModel.getUkuran_saji();
         makananModel.getKalori_makanan();
         makananModel.getKarbo_makanan();
         makananModel.getProtein_makanan();

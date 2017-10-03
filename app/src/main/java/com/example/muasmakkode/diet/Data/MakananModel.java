@@ -8,8 +8,16 @@ import android.os.Parcelable;
  */
 
 public class MakananModel implements Parcelable{
+    public String getNama_makanan() {
+        return nama_makanan;
+    }
+
+    public void setNama_makanan(String nama_makanan) {
+        this.nama_makanan = nama_makanan;
+    }
+
     private String nama_makanan;
-    private String jenis_makanan;
+    private String ukuran_saji;
     private String kalori_makanan;
 
     public String getKarbo_makanan() {
@@ -39,20 +47,13 @@ public class MakananModel implements Parcelable{
     private String karbo_makanan, protein_makanan, lemak_makanan;
 
 
-    public String getNama_makanan() {
-        return nama_makanan;
+
+    public String getUkuran_saji() {
+        return ukuran_saji;
     }
 
-    public void setNama_makanan(String nama_makanan) {
-        this.nama_makanan = nama_makanan;
-    }
-
-    public String getJenis_makanan() {
-        return jenis_makanan;
-    }
-
-    public void setJenis_makanan(String jenis_makanan) {
-        this.jenis_makanan = jenis_makanan;
+    public void setUkuran_saji(String ukuran_saji) {
+        this.ukuran_saji = ukuran_saji;
     }
 
     public String getKalori_makanan() {
@@ -76,7 +77,7 @@ public class MakananModel implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.nama_makanan);
-        dest.writeString(this.jenis_makanan);
+        dest.writeString(this.ukuran_saji);
         dest.writeString(this.kalori_makanan);
         dest.writeString(this.karbo_makanan);
         dest.writeString(this.protein_makanan);
@@ -85,7 +86,7 @@ public class MakananModel implements Parcelable{
 
     protected MakananModel(Parcel in) {
         this.nama_makanan = in.readString();
-        this.jenis_makanan = in.readString();
+        this.ukuran_saji = in.readString();
         this.kalori_makanan = in.readString();
         this.karbo_makanan = in.readString();
         this.protein_makanan = in.readString();
