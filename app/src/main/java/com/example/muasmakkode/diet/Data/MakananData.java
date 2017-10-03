@@ -15,7 +15,7 @@ public class MakananData {
             {
                     "Nasi Putih",
                     "1 gelas",
-                    "394.5",
+                    "394",
                     "40",
                     "4",
                     "0"

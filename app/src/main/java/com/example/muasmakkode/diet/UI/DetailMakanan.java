@@ -69,7 +69,7 @@ public class DetailMakanan extends AppCompatActivity {
                     int hasil_karbo = Integer.parseInt(editTextJumlahTakaran.getText().toString())
                             * Integer.parseInt(makananModel.getKarbo_makanan().toString());
 
-                    int hasil_kalori = Integer.parseInt(editTextJumlahTakaran.getText().toString())
+                    double hasil_kalori = Integer.parseInt(editTextJumlahTakaran.getText().toString())
                             * Integer.parseInt(makananModel.getKalori_makanan().toString());
 
                     int hasil_protein = Integer.parseInt(editTextJumlahTakaran.getText().toString())
