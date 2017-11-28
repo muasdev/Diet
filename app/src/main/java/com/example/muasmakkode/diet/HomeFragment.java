@@ -1,7 +1,6 @@
 package com.example.muasmakkode.diet;
 
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,6 +32,10 @@ public class HomeFragment extends Fragment {
     Unbinder unbinder;
     @BindView(R.id.textView_totalkalori)
     TextView textViewTotalkalori;
+    @BindView(R.id.textView_detail_kalorimasuk)
+    TextView textViewDetailKalorimasuk;
+    @BindView(R.id.textView_detail_kalorikeluar)
+    TextView textViewDetailKalorikeluar;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -43,10 +46,10 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this, view);
+
 
         pref = getContext().getSharedPreferences("userInfo", MODE_PRIVATE);
 
@@ -56,7 +59,7 @@ public class HomeFragment extends Fragment {
             Integer total_energi, sisa_energi, maks;
             maks = 100;
             total_energi = umur + tinggiBadan;
-            sisa_energi = maks - total_energi ;
+            sisa_energi = maks - total_energi;
             progresBar.setProgress(total_energi);
             textViewTotalkalori.setText(sisa_energi.toString() + " kkal tersisa dari " + total_energi.toString());
         } catch (Exception ex) {

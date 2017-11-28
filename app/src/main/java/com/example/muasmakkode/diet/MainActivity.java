@@ -43,8 +43,12 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                MakananFragment makananFragment = new MakananFragment();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout, makananFragment);
+                fragmentTransaction.commit();
             }
         });
 
@@ -133,6 +137,11 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_riwayat) {
+
+            SarapanFragment sarapanFragment = new SarapanFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.framelayout, sarapanFragment);
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_send) {
 

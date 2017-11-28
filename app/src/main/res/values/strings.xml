@@ -57,6 +57,9 @@
 
     <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
     <string name="gender_female">Female</string>
+    <string name="nama_makanan">Nama makanan</string>
+    <string name="listsarapan_makanan">Makanan</string>
+    <string name="listsarapan_kalori">kalori</string>
 
     <string-array name="jumlah_sajian">
         <item>a</item>

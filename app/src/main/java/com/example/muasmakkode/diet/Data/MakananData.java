@@ -21,12 +21,21 @@ public class MakananData {
                     "0"
             },
             {
-                    "Daging Ayam",
-                    "protein",
-                    "50",
-                    "20",
-                    "50",
-                    "60"},
+                    "Roti Putih",
+                    "3 iris",
+                    "175",
+                    "40",
+                    "4",
+                    "0"
+            },
+            {
+                    "Jagung segar",
+                    "3 bh sedang",
+                    "175",
+                    "40",
+                    "4",
+                    "0"
+            },
             {
                     "Telur Ayam",
                     "protein",
@@ -75,13 +84,12 @@ public class MakananData {
     };
 
     /**
-     *
      * buat kelas array menampung data
      */
-    public static ArrayList<MakananModel> getListData(){
+    public static ArrayList<MakananModel> getListData() {
         MakananModel makanan = null;
         ArrayList<MakananModel> list = new ArrayList<>();
-        for (int i = 0; i <data.length; i++) {
+        for (int i = 0; i < data.length; i++) {
             makanan = new MakananModel();
             makanan.setNama_makanan(data[i][0]);
             makanan.setUkuran_saji(data[i][1]);

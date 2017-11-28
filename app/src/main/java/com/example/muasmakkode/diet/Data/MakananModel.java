@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by muasmakkode on 21/09/2017.
  */
 
-public class MakananModel implements Parcelable{
+public class MakananModel implements Parcelable {
     public String getNama_makanan() {
         return nama_makanan;
     }
@@ -45,7 +45,6 @@ public class MakananModel implements Parcelable{
     }
 
     private String karbo_makanan, protein_makanan, lemak_makanan;
-
 
 
     public String getUkuran_saji() {

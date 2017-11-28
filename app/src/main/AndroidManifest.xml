@@ -19,12 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingFragment" />
+        <activity
+            android:name=".SettingFragment"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".KonsulAwalActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".Coba" />
         <activity android:name=".DetilAktifitas" />
-        <activity android:name=".UI.DetailMakanan"></activity>
+        <activity
+            android:name=".UI.DetailMakanan"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>
