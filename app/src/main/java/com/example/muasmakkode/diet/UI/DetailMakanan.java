@@ -2,7 +2,6 @@ package com.example.muasmakkode.diet.UI;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,21 +14,16 @@ import android.widget.Toast;
 import com.example.muasmakkode.diet.Data.MakananModel;
 import com.example.muasmakkode.diet.DbSQlite.DatabaseHandler;
 import com.example.muasmakkode.diet.DbSQlite.Makanan;
-import com.example.muasmakkode.diet.HomeFragment;
 import com.example.muasmakkode.diet.R;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class DetailMakanan extends AppCompatActivity {
 
 
-
-    @BindView(R.id.textView_detail_nama_makanan)
-    TextView textViewDetailNamaMakanan;
     @BindView(R.id.textView_detail_kalori_makanan)
     TextView textViewDetailKaloriMakanan;
     @BindView(R.id.textView_detail_karbohidrat)
@@ -38,14 +32,14 @@ public class DetailMakanan extends AppCompatActivity {
     TextView textViewDetailProtein;
     @BindView(R.id.textView_detail_lemak)
     TextView textViewDetailLemak;
-    @BindView(R.id.text_view_ukuran_saji)
-    TextView textViewUkuranSaji;
     @BindView(R.id.editText_jumlah_takaran)
     EditText editTextJumlahTakaran;
     @BindView(R.id.button_tambah)
     Button buttonTambah;
 
     DatabaseHandler databaseHandler = new DatabaseHandler(this);
+    @BindView(R.id.textView_jumlahurt)
+    TextView textViewJumlahurt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +53,14 @@ public class DetailMakanan extends AppCompatActivity {
         String judulTitleBar = makananModel.getNama_makanan().toString();
         getSupportActionBar().setTitle(judulTitleBar);
 
-        textViewDetailNamaMakanan.setText(makananModel.getNama_makanan());
+
+//        textViewDetailNamaMakanan.setText(makananModel.getNama_makanan()); //kode set textview dari model
 
         textViewDetailKaloriMakanan.setText(makananModel.getKalori_makanan());
         textViewDetailKarbohidrat.setText(makananModel.getKarbo_makanan());
         textViewDetailProtein.setText(makananModel.getProtein_makanan());
         textViewDetailLemak.setText(makananModel.getLemak_makanan());
-        textViewUkuranSaji.setText(makananModel.getUkuran_saji());
+        textViewJumlahurt.setText(makananModel.getUkuran_saji());
 
         editTextJumlahTakaran.addTextChangedListener(new TextWatcher() {
             @Override
@@ -115,12 +110,11 @@ public class DetailMakanan extends AppCompatActivity {
          * CRUD Operations
          * */
 
-        String namaMakanan = textViewDetailNamaMakanan.getText().toString();
         String totalKalori = textViewDetailKaloriMakanan.getText().toString();
 
         // Inserting Contacts
-        Log.d("Insert: ", "Inserting ..");
-        databaseHandler.addMakanan(new Makanan(namaMakanan, totalKalori));
+//        Log.d("Insert: ", "Inserting ..");
+//        databaseHandler.addMakanan(new Makanan(namaMakanan, totalKalori));
 
         Toast.makeText(this, "anda telah menambah data makanan yang anda konsumsi", Toast.LENGTH_SHORT).show();
 
@@ -134,7 +128,6 @@ public class DetailMakanan extends AppCompatActivity {
             Log.d("Name: ", log);
         }
     }
-
 
 
 }
