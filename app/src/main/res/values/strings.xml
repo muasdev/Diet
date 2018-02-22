@@ -10,19 +10,14 @@
     <string name="hello_blank_fragment">Total kebutuhan kalori saya adalah</string>
 
     <!-- Label for overflow menu option that inserts fake pet data into the app [CHAR LIMIT=20] -->
-    <string name="action_insert_dummy_data">Insert Dummy Data</string>
 
     <!-- Label for overflow menu option that deletes all pet data in the app [CHAR LIMIT=20] -->
-    <string name="action_delete_all_entries">Delete All Pets</string>
 
     <!-- Title for the activity to add a new pet [CHAR LIMIT=20] -->
-    <string name="editor_activity_title_new_pet">Add a Pet</string>
 
     <!-- Label for editor menu option to save pet and leave editor [CHAR LIMIT=20] -->
-    <string name="action_save">Save</string>
 
     <!-- Label for editor overflow menu option that deletes the current pet [CHAR LIMIT=20] -->
-    <string name="action_delete">Delete</string>
 
     <!-- Label for overview category of attributes in the editor [CHAR LIMIT=30] -->
     <string name="category_overview">Pengenalan</string>
@@ -53,18 +48,10 @@
     <string name="unit_user_tinggi">cm</string>
 
     <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
-    <string name="gender_male">Male</string>
 
     <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
-    <string name="gender_female">Female</string>
     <string name="nama_makanan">Nama makanan</string>
-    <string name="listsarapan_makanan">Makanan</string>
-    <string name="listsarapan_kalori">kalori</string>
-
-    <string-array name="jumlah_sajian">
-        <item>a</item>
-        <item>b</item>
-    </string-array>
+    <string name="rb_text_panahan">Panahan</string>
 
 
 </resources>

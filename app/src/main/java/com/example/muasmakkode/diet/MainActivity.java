@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.example.muasmakkode.diet.InfoDev.InfoDevActivity;
 
 
 public class MainActivity extends AppCompatActivity
@@ -53,8 +54,6 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -67,8 +66,8 @@ public class MainActivity extends AppCompatActivity
         //digunakan untuk set Text ke header navigation drawer dari setting dan sharedPreferences
         View header = navigationView.getHeaderView(0);
 
-        tv_name = (TextView)header.findViewById(R.id.namaUser);
-        tv_umur = (TextView)header.findViewById(R.id.umurUser);
+        tv_name = (TextView) header.findViewById(R.id.namaUser);
+        tv_umur = (TextView) header.findViewById(R.id.umurUser);
 
         pref = getApplicationContext().getSharedPreferences("userInfo", MODE_PRIVATE);
 
@@ -138,16 +137,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_riwayat) {
 
-            SarapanFragment sarapanFragment = new SarapanFragment();
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.framelayout, sarapanFragment);
-            fragmentTransaction.commit();
+
 
         } else if (id == R.id.nav_send) {
 
-        } else if (id == R.id.nav_share) {
+            Intent intent = new Intent(this, InfoDevActivity.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_send) {
 
         }
 

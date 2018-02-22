@@ -58,7 +58,7 @@ public class CardViewMakananAdapter extends RecyclerView.Adapter<CardViewMakanan
     }
 
 
-    public class CardViewViewHolder extends RecyclerView.ViewHolder{
+    public static class CardViewViewHolder extends RecyclerView.ViewHolder {
         TextView tvNama, tvJenisMakanan, tvKaloriMakanan;
 
         public CardViewViewHolder(View itemView){

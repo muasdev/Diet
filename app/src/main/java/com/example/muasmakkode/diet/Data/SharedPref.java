@@ -37,7 +37,7 @@ public class SharedPref {
         prefsEditor.commit();
     }
 
-    public static boolean read(String key, boolean defValue) {
+    public static Boolean read(String key, boolean defValue) {
         return mSharedPref.getBoolean(key, defValue);
     }
 

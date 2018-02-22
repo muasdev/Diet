@@ -1,5 +1,8 @@
 package com.example.muasmakkode.diet.UI;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -12,11 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.muasmakkode.diet.Data.MakananModel;
-import com.example.muasmakkode.diet.DbSQlite.DatabaseHandler;
-import com.example.muasmakkode.diet.DbSQlite.Makanan;
+import com.example.muasmakkode.diet.MainActivity;
 import com.example.muasmakkode.diet.R;
-
-import java.util.List;
+import com.example.muasmakkode.diet.db.DatabaseHandler;
+import com.example.muasmakkode.diet.db.model.ModelMakanan;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,9 +39,19 @@ public class DetailMakanan extends AppCompatActivity {
     @BindView(R.id.button_tambah)
     Button buttonTambah;
 
-    DatabaseHandler databaseHandler = new DatabaseHandler(this);
     @BindView(R.id.textView_jumlahurt)
     TextView textViewJumlahurt;
+
+    int hasil_karbo;
+    double hasil_kalori;
+    int hasil_protein;
+    int hasil_lemak;
+
+    String judulTitleBar;
+
+    private String nama, urt, kalori, karbohidrat, protein, lemak;
+
+    private DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +62,18 @@ public class DetailMakanan extends AppCompatActivity {
         final MakananModel makananModel;
         makananModel = getIntent().getParcelableExtra("makananModel");
 
-        String judulTitleBar = makananModel.getNama_makanan().toString();
+        judulTitleBar = makananModel.getNama_makanan().toString();
         getSupportActionBar().setTitle(judulTitleBar);
+
+        /*/Instantiate database handler*/
+        db = new DatabaseHandler(getApplicationContext());
+
+        buttonTambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addContact();
+            }
+        });
 
 
 //        textViewDetailNamaMakanan.setText(makananModel.getNama_makanan()); //kode set textview dari model
@@ -74,16 +96,16 @@ public class DetailMakanan extends AppCompatActivity {
                 try {
 
 
-                    int hasil_karbo = Integer.parseInt(editTextJumlahTakaran.getText().toString())
+                    hasil_karbo = Integer.parseInt(editTextJumlahTakaran.getText().toString())
                             * Integer.parseInt(makananModel.getKarbo_makanan().toString());
 
-                    double hasil_kalori = Integer.parseInt(editTextJumlahTakaran.getText().toString())
+                    hasil_kalori = Integer.parseInt(editTextJumlahTakaran.getText().toString())
                             * Integer.parseInt(makananModel.getKalori_makanan().toString());
 
-                    int hasil_protein = Integer.parseInt(editTextJumlahTakaran.getText().toString())
+                    hasil_protein = Integer.parseInt(editTextJumlahTakaran.getText().toString())
                             * Integer.parseInt(makananModel.getProtein_makanan().toString());
 
-                    int hasil_lemak = Integer.parseInt(editTextJumlahTakaran.getText().toString())
+                    hasil_lemak = Integer.parseInt(editTextJumlahTakaran.getText().toString())
                             * Integer.parseInt(makananModel.getLemak_makanan().toString());
 
                     textViewDetailKaloriMakanan.setText(String.valueOf(hasil_kalori));
@@ -104,30 +126,24 @@ public class DetailMakanan extends AppCompatActivity {
         });
     }
 
-    public void tambahData(View view) {
-
-        /**
-         * CRUD Operations
-         * */
-
-        String totalKalori = textViewDetailKaloriMakanan.getText().toString();
-
-        // Inserting Contacts
-//        Log.d("Insert: ", "Inserting ..");
-//        databaseHandler.addMakanan(new Makanan(namaMakanan, totalKalori));
-
-        Toast.makeText(this, "anda telah menambah data makanan yang anda konsumsi", Toast.LENGTH_SHORT).show();
-
-        // Reading all contacts
-        Log.d("Reading: ", "Reading all contacts..");
-        List<Makanan> makanan = databaseHandler.getAllMakanans();
-
-        for (Makanan cn : makanan) {
-            String log = "Id: " + cn.getId() + " ,Name: " + cn.getNama_food() + " ,Phone: " + cn.getTotal_kalori();
-            // Writing Makanans to log
-            Log.d("Name: ", log);
-        }
+    // function to get values from the Edittext and image
+    private void getValues() {
+        nama = judulTitleBar.toString();
+        urt = textViewJumlahurt.getText().toString();
+        kalori = textViewDetailKaloriMakanan.getText().toString();
+        karbohidrat = textViewDetailKarbohidrat.getText().toString();
+        protein = textViewDetailProtein.getText().toString();
+        lemak = textViewDetailLemak.getText().toString();
     }
 
+    //Insert data to the database
+    private void addContact() {
+        getValues();
+
+        db.addContacts(new ModelMakanan(nama, urt, kalori, karbohidrat, protein, lemak));
+        Toast.makeText(this, "Berhasil menambahkan " + nama + " ke dalam daftar", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
 }

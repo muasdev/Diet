@@ -48,7 +48,6 @@
 
     <!-- Gender category -->
     <LinearLayout
-        android:id="@+id/container_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -93,7 +92,6 @@
 
     <!-- Measurement category -->
     <LinearLayout
-        android:id="@+id/container_measurement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -123,7 +121,6 @@
             <!-- Units for weight (kg) -->
             <TextView
                 android:layout_toRightOf="@+id/edit_user_berat"
-                android:id="@+id/label_berat_unit"
                 style="@style/EditorUnitsStyle"
                 android:text="@string/unit_user_berat" />
 
@@ -139,7 +136,6 @@
             <!-- Units for weight (kg) -->
             <TextView
                 android:layout_toRightOf="@+id/edit_tinggi_user"
-                android:id="@+id/label_tinggi_unit"
                 style="@style/EditorUnitsStyle"
                 android:layout_below="@+id/edit_user_berat"
                 android:text="@string/unit_user_tinggi" />
