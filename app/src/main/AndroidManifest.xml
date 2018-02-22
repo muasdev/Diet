@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Awal.KonsulActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -31,7 +31,7 @@
         <activity android:name=".RadioButton.RadioButtonActivity" />
         <activity android:name=".Awal.KonsulKeduaActivity" />
         <activity android:name=".Awal.KonsulKetigaActivity" />
-        <activity android:name=".Awal.KonsulActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

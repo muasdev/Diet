@@ -1,15 +1,13 @@
 package com.example.muasmakkode.diet.Awal;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
-import com.example.muasmakkode.diet.Data.SharedPref;
 import com.example.muasmakkode.diet.R;
 
 import butterknife.BindView;
@@ -21,26 +19,41 @@ public class KonsulActivity extends AppCompatActivity {
 
     @BindView(R.id.editText_Nama)
     TextInputEditText editTextNama;
-    @BindView(R.id.editText_Umur)
-    TextInputEditText editTextUmur;
     @BindView(R.id.rb_pria)
     RadioButton rbPria;
     @BindView(R.id.rb_wanita)
     RadioButton rbWanita;
     @BindView(R.id.radio_grup_jenis_kelamin)
     RadioGroup radioGrupJenisKelamin;
+    @BindView(R.id.editText_Umur)
+    TextInputEditText editTextUmur;
     @BindView(R.id.editText_beratBadan)
     TextInputEditText editTextBeratBadan;
     @BindView(R.id.editText_tinggiBadan)
     TextInputEditText editTextTinggiBadan;
-    @BindView(R.id.button_back)
-    Button buttonBack;
-    @BindView(R.id.button_next)
-    Button buttonNext;
+    @BindView(R.id.istirahat)
+    RadioButton istirahat;
+    @BindView(R.id.ringanSekali)
+    RadioButton ringanSekali;
+    @BindView(R.id.ringan)
+    RadioButton ringan;
+    @BindView(R.id.ringanSedang)
+    RadioButton ringanSedang;
+    @BindView(R.id.sedang)
+    RadioButton sedang;
+    @BindView(R.id.berat)
+    RadioButton berat;
+    @BindView(R.id.beratSekali)
+    RadioButton beratSekali;
+    @BindView(R.id.button_simpan)
+    Button buttonSimpan;
 
-    double jumlah_bmr;
-    int berat_badan, tinggi_badan, umur;
-    String total_bmr;
+    RadioButton radioButton;
+    int BMR = 0;
+
+    String umur, beratBadan, tinggiBadan;
+    @BindView(R.id.radio_grup_aktifitas_harian)
+    RadioGroup radioGrupAktifitasHarian;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,66 +61,96 @@ public class KonsulActivity extends AppCompatActivity {
         setContentView(R.layout.activity_konsul);
         ButterKnife.bind(this);
 
-        SharedPref.init(getApplicationContext());
 
     }
 
+    public void cekJenisKelamin() {
+        final int selectedId = radioGrupJenisKelamin.getCheckedRadioButtonId();
 
-    @OnClick({R.id.button_back, R.id.button_next})
-    public void onViewClicked(View view) {
 
-        //cek radio button yang tercek
-        switch (view.getId()) {
-            case R.id.button_back:
-                break;
-            case R.id.button_next:
-                /*berat_badan = Integer.parseInt(editTextBeratBadan.getText().toString());
-                tinggi_badan = Integer.parseInt(editTextTinggiBadan.getText().toString());
-                umur = Integer.parseInt(editTextUmur.getText().toString());
+        // find the radio button by returned id
+        radioButton = (RadioButton) findViewById(selectedId);
 
-                RadioGroup g = (RadioGroup) findViewById(R.id.radio_grup_jenis_kelamin);
+        if (radioGrupJenisKelamin.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "pilih jenis kelamin", Toast.LENGTH_SHORT).show();
+        } else {
+            /*Toast.makeText(KonsulActivity.this,
+                    radioButton.getText(), Toast.LENGTH_SHORT).show();*/
+            if (rbPria.isChecked()) {
+                beratBadan = editTextBeratBadan.getText().toString();
+                umur = editTextUmur.getText().toString();
+                tinggiBadan = editTextTinggiBadan.getText().toString();
+                BMR = (int) (66 + 13.7 * Integer.parseInt(beratBadan) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur));
+                /*Toast.makeText(this, "" + BMR, Toast.LENGTH_SHORT).show();*/
+            } else {
+                beratBadan = editTextBeratBadan.getText().toString();
+                BMR = (int) (655 + 9.6 * Integer.parseInt(beratBadan) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur));
+                /*Toast.makeText(this, "" + BMR, Toast.LENGTH_SHORT).show();*/
+            }
+        }
 
-                switch (g.getCheckedRadioButtonId()) {
-                    case R.id.rb_pria:
+    }
 
-                        //rumus hitung BMR untuk pria
-                        jumlah_bmr = 66 + (13.7 * berat_badan) + (5 * tinggi_badan) - (6.8 * umur);
-                        break;
+    public void cekJenisAktifitas() {
+        final int checkId = radioGrupAktifitasHarian.getCheckedRadioButtonId();
 
-                    case R.id.rb_wanita:
-                        //rumus hitung BMR untuk wanita
-                        jumlah_bmr = 655 + (9.6 * berat_badan) + (1.8 * tinggi_badan) - (4.7 * umur);
-                        break;
+
+        // find the radio button by returned id
+        radioButton = (RadioButton) findViewById(checkId);
+
+        if (radioGrupAktifitasHarian.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "pilih jenis aktifitas", Toast.LENGTH_SHORT).show();
+        } else {
+
+            if (istirahat.isChecked()) {
+                if (rbPria.isChecked()) {
+                    int EAF = (int) 1.2 * BMR;
+                    Toast.makeText(this, "" + EAF, Toast.LENGTH_SHORT).show();
+                } else {
+                    int EAF = (int) 1.2 * BMR;
+                    Toast.makeText(this, "" + EAF, Toast.LENGTH_SHORT).show();
                 }
+            }
+            if (ringanSekali.isChecked()) {
 
-                SharedPref.write(SharedPref.JENIS_KELAMIN, radioGrupJenisKelamin.getCheckedRadioButtonId());
+            }
+            if (ringan.isChecked()) {
 
-                total_bmr = String.valueOf(Math.round(jumlah_bmr));*/
-                Intent intent = new Intent(this, KonsulKetigaActivity.class);
-                //kode kirim data ke activity selanjutnya
-//                intent.putExtra("jumlah_bmr", total_bmr);
-                startActivity(intent);
+            }
+            if (ringanSedang.isChecked()) {
+
+            }
+            if (sedang.isChecked()) {
+
+            }
+            if (berat.isChecked()) {
+
+            }
+            if (beratSekali.isChecked()) {
+
+            }
+
+            /*if (rbPria.isChecked()) {
+                beratBadan = editTextBeratBadan.getText().toString();
+                umur = editTextUmur.getText().toString();
+                tinggiBadan = editTextTinggiBadan.getText().toString();
+                int BMR = (int) (66 + 13.7 * Integer.parseInt(beratBadan) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur));
+                Toast.makeText(this, "" + BMR, Toast.LENGTH_SHORT).show();
+            } else {
+                beratBadan = editTextBeratBadan.getText().toString();
+                int BMR = (int) (655 + 9.6 * Integer.parseInt(beratBadan) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur));
+                Toast.makeText(this, "" + BMR, Toast.LENGTH_SHORT).show();
+            }*/
         }
     }
 
 
+    @OnClick(R.id.button_simpan)
+    public void onViewClicked() {
 
-                /*SharedPref.write(SharedPref.NAMA, editTextNama.getText().toString());
-                SharedPref.write(SharedPref.UMUR, editTextUmur.getText().toString());
-                SharedPref.write(SharedPref.JENIS_KELAMIN, radioGrupJenisKelamin.getCheckedRadioButtonId());
-                SharedPref.write(SharedPref.BERAT_BADAN, editTextBeratBadan.getText().toString());
-                SharedPref.write(SharedPref.TINGGI_BADAN, editTextTinggiBadan.getText().toString());*/
-
-    //kode untuk ngecek apa isian sudah lengkap
-                /*if (editTextNama.getText().toString().isEmpty() || editTextUmur.getText().toString().isEmpty() ||
-                        radioGrupJenisKelamin.getCheckedRadioButtonId() == -1 ||
-                        editTextBeratBadan.getText().toString().isEmpty() ||
-                        editTextTinggiBadan.getText().toString().isEmpty()
-                        ) {
-
-                    Toast.makeText(this, "harap lengkapi isian yang ada di atas", Toast.LENGTH_SHORT).show();
-                } else {*/
-
-
+        cekJenisKelamin();
+        cekJenisAktifitas();
+    }
 }
+
 
