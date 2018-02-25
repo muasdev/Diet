@@ -1,5 +1,6 @@
 package com.example.muasmakkode.diet;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.muasmakkode.diet.Awal.KonsulActivity;
 import com.example.muasmakkode.diet.InfoDev.InfoDevActivity;
 
 
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity
 
     TextView tv_name, tv_umur;
 
-    SharedPreferences pref;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -34,11 +36,21 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //jadikan home fragment halaman utama
-        HomeFragment homeFragment = new HomeFragment();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout, homeFragment);
-        fragmentTransaction.commit();
+        sharedPreferences = getApplicationContext().getSharedPreferences("dataBmr", Context.MODE_PRIVATE);
+        if (sharedPreferences != null) {
+            //jadikan home fragment halaman utama
+            HomeFragment homeFragment = new HomeFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.framelayout, homeFragment);
+            fragmentTransaction.commit();
+
+
+        } else {
+            Intent intent = new Intent(getApplicationContext(), KonsulActivity.class);
+            startActivity(intent);
+        }
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +76,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //code tambahan
         //digunakan untuk set Text ke header navigation drawer dari setting dan sharedPreferences
-        View header = navigationView.getHeaderView(0);
+        /*View header = navigationView.getHeaderView(0);
 
         tv_name = (TextView) header.findViewById(R.id.namaUser);
         tv_umur = (TextView) header.findViewById(R.id.umurUser);
@@ -75,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         String umur = pref.getString("userumur", "");
 
         tv_name.setText(nama);
-        tv_umur.setText(umur);
+        tv_umur.setText(umur);*/
 
         //sampai sini codenya
     }

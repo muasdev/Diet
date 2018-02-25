@@ -1,6 +1,8 @@
 package com.example.muasmakkode.diet;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.muasmakkode.diet.Awal.KonsulActivity;
 import com.example.muasmakkode.diet.db.DataAdapter;
 import com.example.muasmakkode.diet.db.DatabaseHandler;
 import com.example.muasmakkode.diet.db.model.ModelMakanan;
@@ -62,6 +65,8 @@ public class HomeFragment extends Fragment {
 
     DatabaseHandler db;
 
+    SharedPreferences sharedPreferences;
+
     private ArrayList<ModelMakanan> modelMakananArrayList;
 
     public HomeFragment() {
@@ -76,6 +81,18 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+        sharedPreferences = getContext().getSharedPreferences("dataBmr", Context.MODE_PRIVATE);
+        if (sharedPreferences != null) {
+            String nilaiBmr = String.valueOf(sharedPreferences.getString("my_eaf", ""));
+            textViewTotalKebutuhankalori.setText("" + nilaiBmr);
+        }
+
+        /*if (sharedPreferences != null) {
+            String nilaiBmr = String.valueOf(sharedPreferences.getString("my_eaf", ""));
+            textViewTotalKebutuhankalori.setText("" + nilaiBmr);
+        }*/
+
 
         //Instantiate database handler
         db = new DatabaseHandler(getContext());
@@ -109,7 +126,7 @@ public class HomeFragment extends Fragment {
 
         recycleViewSarapan.setAdapter(dataAdapters);
 
-        pref = getContext().getSharedPreferences("userInfo", MODE_PRIVATE);
+        /*pref = getContext().getSharedPreferences("userInfo", MODE_PRIVATE);
 
         try {
             Integer umur = Integer.parseInt(pref.getString("userumur", ""));
@@ -122,7 +139,9 @@ public class HomeFragment extends Fragment {
             textViewTotalKebutuhankalori.setText(sisa_energi.toString() + " kkal tersisa dari " + total_energi.toString());
         } catch (Exception ex) {
 
-        }
+        }*/
+
+
 
 
         return view;
