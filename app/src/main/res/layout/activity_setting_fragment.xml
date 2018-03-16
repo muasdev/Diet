@@ -1,90 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     tools:context="com.example.muasmakkode.diet.SettingFragment">
 
-    <EditText
-        android:id="@+id/editText_Nama"
-        android:layout_width="305dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:hint="Nama"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="45dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editText_Umur"
-        android:layout_width="305dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="umur"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Nama"
-        tools:layout_editor_absoluteX="40dp" />
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editText_Nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama" />
 
-    <EditText
-        android:id="@+id/editText_Tb"
-        android:layout_width="305dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Tinggi Badan"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Umur"
-        tools:layout_editor_absoluteX="40dp" />
+        <RadioGroup
+            android:id="@+id/radio_grup_jenis_kelamin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RadioButton
+                android:id="@+id/rb_pria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pria"
+                android:checked="false" />
+
+            <RadioButton
+                android:id="@+id/rb_wanita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/rb_pria"
+                android:text="Wanita"
+                android:checked="false" />
+
+        </RadioGroup>
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editText_Umur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Umur"
+            android:inputType="number" />
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editText_beratBadan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Berat badan"
+            android:inputType="number" />
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editText_tinggiBadan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tinggi badan"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="#4052b5"
+            android:text="Aktivitas harian"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <!--<TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Pilih kategori aktivitas harian . . ."
+            android:textColor="#000"
+            android:textSize="14sp" />-->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <RadioGroup
+                android:id="@+id/radio_grup_aktifitas_harian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/istirahat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Istirahat (tidur, berbaring, duduk)" />
+
+                <RadioButton
+                    android:id="@+id/ringanSekali"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ringan sekali (Menulis, mengetik)" />
+
+                <RadioButton
+                    android:id="@+id/ringan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ringan (menyapu, menjahit, mencuci piring, menghias ruangan)" />
+
+                <RadioButton
+                    android:id="@+id/ringanSedang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ringan - Sedang (Sekolah, kuliah, kerja kantor)" />
+
+                <RadioButton
+                    android:id="@+id/sedang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sedang (Mencangkul, menyabit rumput)" />
+
+                <RadioButton
+                    android:id="@+id/berat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Berat (Menggergaji pohon dengan gergaji tangan)" />
+
+                <RadioButton
+                    android:id="@+id/beratSekali"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Berat Sekali (Mendaki gunung, menarik becak)" />
+
+            </RadioGroup>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <!--<Button
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:drawableTop="@drawable/ic_arrow_back_black_24dp"
+        android:text="back" />-->
 
     <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
+        android:id="@+id/button_simpan"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Simpan"
-        tools:layout_editor_absoluteX="40dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Tb" />
-
-    <Button
-        android:id="@+id/buttonShow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tampilkan"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Tb"
-        app:layout_constraintLeft_toRightOf="@+id/buttonSave"
-        android:layout_marginLeft="8dp" />
-
-    <TextView
-        android:id="@+id/textView_Nama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nama"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="40dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSave" />
-
-    <TextView
-        android:id="@+id/textView_Umur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Umur"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="40dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Nama" />
-
-    <TextView
-        android:id="@+id/textView_Tb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Tinggi Badan"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Umur"
-        tools:layout_editor_absoluteX="40dp" />
-
-</android.support.constraint.ConstraintLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:text="Simpan" />
+</RelativeLayout>

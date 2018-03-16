@@ -31,6 +31,7 @@
         <activity android:name=".RadioButton.RadioButtonActivity" />
         <activity android:name=".Awal.KonsulKeduaActivity" />
         <activity android:name=".Awal.KonsulKetigaActivity" />
+        <activity android:name=".UI.DetailKonsumsi" />
         <activity android:name=".Awal.KonsulActivity"></activity>
     </application>
 

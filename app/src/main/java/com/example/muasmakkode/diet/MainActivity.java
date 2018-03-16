@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.muasmakkode.diet.Awal.KonsulActivity;
 import com.example.muasmakkode.diet.InfoDev.InfoDevActivity;
+import com.example.muasmakkode.diet.db.DatabaseHandler;
 
 
 public class MainActivity extends AppCompatActivity
@@ -51,8 +52,7 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.commit();
             }
         });
-
+*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            finishAffinity();
         }
     }
 
@@ -121,6 +121,13 @@ public class MainActivity extends AppCompatActivity
 
             Intent intent = new Intent(this, SettingFragment.class);
             startActivity(intent);
+            return true;
+        } else if (id == R.id.action_refresh) {
+
+            HomeFragment homeFragment = new HomeFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.framelayout, homeFragment);
+            fragmentTransaction.commit();
             return true;
         }
 
@@ -148,7 +155,6 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_riwayat) {
-
 
 
         } else if (id == R.id.nav_send) {
