@@ -6,12 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -59,18 +56,46 @@ public class SettingFragment extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
+    public static final String PREFERENCE = "dataBmr";
+
+    /*tambahan code untuk menyimpan nilai dari radio button ke sharedpref*/
+    String textRadioButton;
+
     String umur, beratBadan, tinggiBadan;
     @BindView(R.id.radio_grup_aktifitas_harian)
     RadioGroup radioGrupAktifitasHarian;
+    @BindView(R.id.rb_darahA)
+    RadioButton rbDarahA;
+    @BindView(R.id.rb_darahB)
+    RadioButton rbDarahB;
+    @BindView(R.id.rb_darahAB)
+    RadioButton rbDarahAB;
+    @BindView(R.id.rb_darahO)
+    RadioButton rbDarahO;
+    @BindView(R.id.radio_grup_jenis_goldar)
+    RadioGroup radioGrupJenisGoldar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_fragment);
+
+        sharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
+
+        /*if(sharedPreferences.contains("my_eaf")) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "lengkapi form ini", Toast.LENGTH_SHORT).show();
+        }*/
+
         ButterKnife.bind(this);
     }
 
     public void getValue() {
+        textRadioButton = radioButton.getText().toString();
+        /*Toast.makeText(getApplicationContext(), "ini " + textRadioButton, Toast.LENGTH_SHORT).show();*/
         beratBadan = editTextBeratBadan.getText().toString();
         umur = editTextUmur.getText().toString();
         tinggiBadan = editTextTinggiBadan.getText().toString();
@@ -84,12 +109,15 @@ public class SettingFragment extends AppCompatActivity {
     public void cekJenisKelamin() {
         final int selectedId = radioGrupJenisKelamin.getCheckedRadioButtonId();
         final int checkId = radioGrupAktifitasHarian.getCheckedRadioButtonId();
+        final int checkIdDarah = radioGrupJenisGoldar.getCheckedRadioButtonId();
 
 
-        // find the radio button by returned id
+        /*// find the radio button by returned id
         radioButton = (RadioButton) findViewById(selectedId);
         // find the radio button by returned id
-        radioButton = (RadioButton) findViewById(checkId);
+        radioButton = (RadioButton) findViewById(checkId);*/
+
+        radioButton = (RadioButton) findViewById(checkIdDarah);
 
         if (radioGrupJenisKelamin.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "pilih jenis kelamin", Toast.LENGTH_SHORT).show();
@@ -218,15 +246,21 @@ public class SettingFragment extends AppCompatActivity {
 
     public void simpanSharedPref() {
         // Store values between instances here
-        sharedPreferences = getSharedPreferences("dataBmr", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         int totalKebutuhanKalori = EAF;
 
         editor.putString("my_eaf", String.valueOf(totalKebutuhanKalori));
+        editor.putString("berat_badan", beratBadan);
+        editor.putString("darah", textRadioButton);
 
         editor.commit();
+
+        Intent in = new Intent(this, MainActivity.class);
+        startActivity(in);
     }
+
 
     @OnClick(R.id.button_simpan)
     public void onViewClicked() {

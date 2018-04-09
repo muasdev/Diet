@@ -19,9 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SettingFragment"
-            android:parentActivityName=".MainActivity" />
+        <activity android:name=".UI.ContohBarActivity" />
+        <!-- android:parentActivityName=".MainActivity" /> -->
         <activity android:name=".KonsulAwalActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".Coba" />
@@ -32,6 +31,7 @@
         <activity android:name=".Awal.KonsulKeduaActivity" />
         <activity android:name=".Awal.KonsulKetigaActivity" />
         <activity android:name=".UI.DetailKonsumsi" />
+        <activity android:name=".SettingFragment" />
         <activity android:name=".Awal.KonsulActivity"></activity>
     </application>
 

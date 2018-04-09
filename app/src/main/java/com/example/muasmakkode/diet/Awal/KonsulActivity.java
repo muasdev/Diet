@@ -57,11 +57,16 @@ public class KonsulActivity extends AppCompatActivity {
     double SDA = 0;
     int EAF = 0;
 
-    SharedPreferences sharedPreferences;
-
     String umur, beratBadan, tinggiBadan;
     @BindView(R.id.radio_grup_aktifitas_harian)
     RadioGroup radioGrupAktifitasHarian;
+
+    SharedPreferences sharedPreferences;
+    /*tambahan code untuk menyimpan nilai dari radio button ke sharedpref*/
+    String textRadioButton;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,8 @@ public class KonsulActivity extends AppCompatActivity {
     }
 
     public void getValue() {
+        textRadioButton = radioButton.getText().toString();
+        Toast.makeText(getApplicationContext(), "ini " + textRadioButton, Toast.LENGTH_SHORT).show();
         beratBadan = editTextBeratBadan.getText().toString();
         umur = editTextUmur.getText().toString();
         tinggiBadan = editTextTinggiBadan.getText().toString();
@@ -84,14 +91,14 @@ public class KonsulActivity extends AppCompatActivity {
     }
 
     public void cekJenisKelamin() {
+
         final int selectedId = radioGrupJenisKelamin.getCheckedRadioButtonId();
         final int checkId = radioGrupAktifitasHarian.getCheckedRadioButtonId();
-
 
         // find the radio button by returned id
         radioButton = (RadioButton) findViewById(selectedId);
         // find the radio button by returned id
-        radioButton = (RadioButton) findViewById(checkId);
+        /*radioButton = (RadioButton) findViewById(checkId);*/
 
         if (radioGrupJenisKelamin.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "pilih jenis kelamin", Toast.LENGTH_SHORT).show();
@@ -100,11 +107,11 @@ public class KonsulActivity extends AppCompatActivity {
         } else if (istirahat.isChecked()) {
             if (rbPria.isChecked()) {
                 getValue();
-                BMR = (int) (66 + 13.7 * Integer.parseInt(beratBadan) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur));
+                /*BMR = (int) (66 + 13.7 * Integer.parseInt(beratBadan) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur));
                 rumusSda();
                 EAF = (int) (1.2 * SDA);
                 simpanSharedPref();
-                pesanBerhasil();
+                pesanBerhasil();*/
             } else {
                 getValue();
                 BMR = (int) (655 + 9.6 * Integer.parseInt(beratBadan) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur));
@@ -214,8 +221,8 @@ public class KonsulActivity extends AppCompatActivity {
 
     public void pesanBerhasil() {
         Toast.makeText(this, "Berhasil disimpan", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);*/
     }
 
     public void simpanSharedPref() {
@@ -225,10 +232,41 @@ public class KonsulActivity extends AppCompatActivity {
 
         int totalKebutuhanKalori = EAF;
 
+
         editor.putString("my_eaf", String.valueOf(totalKebutuhanKalori));
 
         editor.commit();
     }
+
+    public void simpanSharedPrefMan() {
+        // Store values between instances here
+        sharedPreferences = getSharedPreferences("dataBmr", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+      /*  editor.putString("my_eaf", String.valueOf(totalKebutuhanKalori));*/
+
+        editor.commit();
+    }
+
+    /*public void cekRadiogrup() {
+        RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener =
+                new RadioGroup.OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                        RadioButton checkedRadioButton = radioGrupJenisKelamin.findViewById(checkedId);
+                        int checkedIndex = radioGrupJenisKelamin.indexOfChild(checkedRadioButton);
+
+                        RadioButton savedCheckedRadioButton = (RadioButton) radioGrupJenisKelamin.getChildAt(checkedIndex);
+                        savedCheckedRadioButton.setChecked(true);
+
+
+                        Toast.makeText(getBaseContext(), "berhasil disimpan " + checkedIndex, Toast.LENGTH_SHORT).show();
+                    }
+                };
+    }*/
 
     @OnClick(R.id.button_simpan)
     public void onViewClicked() {
@@ -236,6 +274,8 @@ public class KonsulActivity extends AppCompatActivity {
         cekJenisKelamin();
         /*cekJenisAktifitas();*/
     }
+
+
 }
 
 

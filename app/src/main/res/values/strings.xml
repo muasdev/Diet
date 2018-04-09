@@ -8,7 +8,7 @@
     <string name="action_refresh">Refresh</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Total kebutuhan kalori saya adalah</string>
+    <string name="hello_blank_fragment">Kebutuhan kalori</string>
 
     <!-- Label for overflow menu option that inserts fake pet data into the app [CHAR LIMIT=20] -->
 
@@ -53,6 +53,9 @@
     <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
     <string name="nama_makanan">Nama makanan</string>
     <string name="rb_text_panahan">Panahan</string>
-
-
+    <string name="isiTextViewEmptyDataOlahraga">Mulai tambah data anda sekarang, untuk mengetahui total kalori yang anda telah bakar</string>
+    <string name="isiTextViewEmptyDataMakanan">Mulai tambah data anda sekarang, untuk mengetahui total kalori yang anda telah konsumsi</string>
+    <string name="pesan_lebih_kalori">Jangan sampai mengonsumsi kalori terlalu banyak karena kalori yang berlebih akan disimpan sebagai lemak dalam tubuh
+        dan dapat menyebabkan kenaikan berat badan. Jaga keseimbangan energi dalam tubuh dengan
+    seimbang kalori yang dimakan dan kalori yang digunakan (dibakar). Ayo mulai berolahraga untuk bakar kalori!</string>
 </resources>

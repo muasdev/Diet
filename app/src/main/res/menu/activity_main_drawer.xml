@@ -5,23 +5,23 @@
         <item
             android:id="@+id/nav_utama"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Halaman Utama" />
+            android:title="Monitoring Harian" />
         <item
             android:id="@+id/nav_makanan"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Daftar makanan" />
+            android:title="Makanan" />
         <item
-            android:id="@+id/nav_riwayat"
+            android:id="@+id/nav_olahraga"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Riwayat" />
+            android:title="Olahraga" />
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_setting"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Diagnosa" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

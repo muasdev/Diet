@@ -7,81 +7,83 @@
     android:layout_margin="16dp"
     tools:context="com.example.muasmakkode.diet.SettingFragment">
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editText_Nama"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nama" />
+            android:orientation="vertical">
 
-        <RadioGroup
-            android:id="@+id/radio_grup_jenis_kelamin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <RadioButton
-                android:id="@+id/rb_pria"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pria"
-                android:checked="false" />
-
-            <RadioButton
-                android:id="@+id/rb_wanita"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editText_Nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/rb_pria"
-                android:text="Wanita"
-                android:checked="false" />
+                android:hint="Nama" />
 
-        </RadioGroup>
+            <RadioGroup
+                android:id="@+id/radio_grup_jenis_kelamin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editText_Umur"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Umur"
-            android:inputType="number" />
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editText_beratBadan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Berat badan"
-            android:inputType="number" />
+                <RadioButton
+                    android:id="@+id/rb_pria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Pria" />
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editText_tinggiBadan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Tinggi badan"
-            android:inputType="number" />
+                <RadioButton
+                    android:id="@+id/rb_wanita"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/rb_pria"
+                    android:checked="false"
+                    android:text="Wanita" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="#4052b5"
-            android:text="Aktivitas harian"
-            android:textColor="#000"
-            android:textSize="18sp" />
+            </RadioGroup>
 
-        <!--<TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Pilih kategori aktivitas harian . . ."
-            android:textColor="#000"
-            android:textSize="14sp" />-->
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editText_Umur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Umur"
+                android:inputType="number" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="180dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editText_beratBadan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Berat badan"
+                android:inputType="number" />
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editText_tinggiBadan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tinggi badan"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="#4052b5"
+                android:text="Aktivitas harian"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <!--<TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Pilih kategori aktivitas harian . . ."
+                android:textColor="#000"
+                android:textSize="14sp" />-->
+
 
             <RadioGroup
                 android:id="@+id/radio_grup_aktifitas_harian"
@@ -132,9 +134,75 @@
 
             </RadioGroup>
 
-        </ScrollView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#4052b5"
+                android:text="Golongan Darah"
+                android:textColor="#000"
+                android:textSize="18sp" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <RadioGroup
+                    android:id="@+id/radio_grup_jenis_goldar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <RadioButton
+                        android:id="@+id/rb_darahA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="A" />
+
+                    <RadioButton
+                        android:id="@+id/rb_darahB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="B" />
+
+                    <RadioButton
+                        android:id="@+id/rb_darahAB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="AB" />
+
+                    <RadioButton
+                        android:id="@+id/rb_darahO"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="o" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_simpan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Simpan" />
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
 
     <!--<Button
         android:id="@+id/button_back"
@@ -145,11 +213,5 @@
         android:drawableTop="@drawable/ic_arrow_back_black_24dp"
         android:text="back" />-->
 
-    <Button
-        android:id="@+id/button_simpan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:text="Simpan" />
+
 </RelativeLayout>

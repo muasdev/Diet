@@ -62,8 +62,8 @@ public class DetailMakanan extends AppCompatActivity {
         final MakananModel makananModel;
         makananModel = getIntent().getParcelableExtra("makananModel");
 
-        judulTitleBar = makananModel.getNama_makanan().toString();
-        getSupportActionBar().setTitle(judulTitleBar);
+        judulTitleBar = makananModel.getNama_makanan();
+        /*getSupportActionBar().setTitle(judulTitleBar);*/
 
         /*/Instantiate database handler*/
         db = new DatabaseHandler(getApplicationContext());
@@ -76,7 +76,7 @@ public class DetailMakanan extends AppCompatActivity {
         });
 
 
-//        textViewDetailNamaMakanan.setText(makananModel.getNama_makanan()); //kode set textview dari model
+ /*textViewDetailNamaMakanan.setText(makananModel.getNama_makanan()); //kode set textview dari model*/
 
         textViewDetailKaloriMakanan.setText(makananModel.getKalori_makanan());
         textViewDetailKarbohidrat.setText(makananModel.getKarbo_makanan());

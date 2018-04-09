@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,10 +45,10 @@ public class HomeFragment extends Fragment {
     Unbinder unbinder;
     @BindView(R.id.textView_totalKebutuhanKalori)
     TextView textViewTotalKebutuhankalori;
-    @BindView(R.id.recycle_view_sarapan)
-    RecyclerView recycleViewSarapan;
-    @BindView(R.id.txtNomorurut)
-    TextView txtNomorurut;
+    /*@BindView(R.id.recycle_view_sarapan)
+    RecyclerView recycleViewSarapan;*/
+    /*@BindView(R.id.txtNomorurut)
+    TextView txtNomorurut;*/
     @BindView(R.id.textView_totalKarbo)
     TextView textViewTotalKarbo;
     @BindView(R.id.textView_totalProtein)
@@ -60,26 +57,36 @@ public class HomeFragment extends Fragment {
     TextView textViewTotalLemak;
     @BindView(R.id.textView_totalKalori)
     TextView textViewTotalKalori;
-    @BindView(R.id.textView_totalKaloriKonsumsi)
-    TextView textViewTotalKaloriKonsumsi;
-    @BindView(R.id.textView_totalKaloriDibakar)
-    TextView textViewTotalKaloriDibakar;
-    @BindView(R.id.button_tambah_makanan)
+    /*@BindView(R.id.button_tambah_makanan)
     Button buttonTambahMakanan;
     @BindView(R.id.recycle_view_olahraga)
     RecyclerView recycleViewOlahraga;
+    @BindView(R.id.button_tambahOlahraga)
+    Button buttonTambahOlahraga;*/
+    @BindView(R.id.textView_judulhalamanFragment)
+    TextView textViewJudulhalamanFragment;
+    /*@BindView(R.id.imgOlahraga)
+    ImageView imgOlahraga;
+    @BindView(R.id.textView_PesanEmptyDataOlahraga)
+    TextView textViewPesanEmptyDataOlahraga;
+    @BindView(R.id.imgMakanan)
+    ImageView imgMakanan;
+    @BindView(R.id.textView_PesanEmptyDataMakanan)
+    TextView textViewPesanEmptyDataMakanan;*/
+    @BindView(R.id.textView_totalKaloriDibakar)
+    TextView textViewTotalKaloriDibakar;
+    @BindView(R.id.textView_pesanLebihKalori)
+    TextView textViewPesanLebihKalori;
     @BindView(R.id.button_tambahOlahraga)
     Button buttonTambahOlahraga;
 
 
     private List<ModelMakanan> modelMakananList = new ArrayList<>();
+    ModelMakanan modelMakanan;
+    DataAdapter dataAdapters;
 
     private List<ModelOlahraga> modelOlahragaList = new ArrayList<>();
-
-    ModelMakanan modelMakanan;
     ModelOlahraga modelOlahraga;
-
-    DataAdapter dataAdapters;
     DataOlahragaAdapter dataOlahragaAdapter;
 
     DatabaseHandler db;
@@ -108,13 +115,8 @@ public class HomeFragment extends Fragment {
 
 
             String nilaiBmr = String.valueOf(sharedPreferences.getString("my_eaf", ""));
-            textViewTotalKebutuhankalori.setText("" + nilaiBmr);
+            textViewJudulhalamanFragment.setText("Kebutuhan kalori " + nilaiBmr);
         }
-
-        /*if (sharedPreferences != null) {
-            String nilaiBmr = String.valueOf(sharedPreferences.getString("my_eaf", ""));
-            textViewTotalKebutuhankalori.setText("" + nilaiBmr);
-        }*/
 
 
         //Instantiate database handler
@@ -126,8 +128,10 @@ public class HomeFragment extends Fragment {
 
 
         int sumTotalKalori = db.getTotalKalori();
-        textViewTotalKalori.setText("Kalori : " + sumTotalKalori);
-        textViewTotalKaloriKonsumsi.setText("Kalori : " + sumTotalKalori);
+        textViewTotalKalori.setText("Kalori yang dikonsumsi " + sumTotalKalori);
+
+        int sumTotalKaloriDibakar = databaseHandlerOlahraga.getTotalKaloriDibakar();
+        textViewTotalKaloriDibakar.setText("Kalori yang dibakar " + sumTotalKaloriDibakar);
 
         int sumTotalKarbo = db.getTotalKarbo();
         textViewTotalKarbo.setText("Karbo : " + sumTotalKarbo);
@@ -138,31 +142,75 @@ public class HomeFragment extends Fragment {
         int sumTotalLemak = db.getTotalLemak();
         textViewTotalLemak.setText("Lemak : " + sumTotalLemak);
 
+
+        /*kode untuk set progres bar*/
+        String nilaiBmr = String.valueOf(sharedPreferences.getString("my_eaf", ""));
+        int kebKalori, kaloriDikonsumsi, hasilProgres, kaloriDibakar, net, setProgresBar;
+        kebKalori = Integer.parseInt(nilaiBmr);
+        kaloriDikonsumsi = sumTotalKalori;
+        kaloriDibakar = sumTotalKaloriDibakar;
+        net = kaloriDikonsumsi - kaloriDibakar;
+        hasilProgres = kebKalori - net;
+        /*maks = 1000;
+        setProgresBar = maks - hasilProgres;*/
+        progresBar.setMax(kebKalori);
+        progresBar.setProgress(kaloriDikonsumsi);
+        if (kaloriDikonsumsi > kebKalori) {
+            /*Toast.makeText(getContext(), " lebih ", Toast.LENGTH_SHORT).show();*/
+            /*int color = 0xFF00FF00;
+            progresBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+            progresBar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);*/
+            textViewPesanLebihKalori.setVisibility(View.VISIBLE);
+            buttonTambahOlahraga.setVisibility(View.VISIBLE);
+        }
+        textViewTotalKebutuhankalori.setText("sisa " + hasilProgres + " dari " + kebKalori);
+
+
+        /*kode untuk menampilkan pesan jika kelebihan konsumsi kalori*/
+
+
+        /*String nilaiBmr = String.valueOf(sharedPreferences.getString("my_eaf", ""));
+        Integer maks, sisa_energi, total_energi;
+        maks = 2000;
+        total_energi = maks - 100;
+        sisa_energi = maks - total_energi;
+        progresBar.setProgress(sisa_energi);
+        textViewTotalKebutuhankalori.setText(sisa_energi.toString() + " kkal tersisa dari " + total_energi.toString());*/
+
         /*modelMakananArrayList = new ArrayList<>(db.getAllContacts());*/
 
-        recycleViewSarapan = (RecyclerView) view.findViewById(R.id.recycle_view_sarapan);
+        /*recycleViewSarapan = (RecyclerView) view.findViewById(R.id.recycle_view_sarapan);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recycleViewSarapan.setLayoutManager(layoutManager);
-        /*dataAdapters = new DataAdapter(modelMakananArrayList);*/
+        *//*dataAdapters = new DataAdapter(modelMakananArrayList);*//*
         dataAdapters = new DataAdapter((ArrayList<ModelMakanan>) db.getAllContacts(), getContext());
         recycleViewSarapan.setAdapter(dataAdapters);
-        /*ItemClickSupport.addTo(recycleViewSarapan).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+        if (dataAdapters.getItemCount() == 0) {
+            imgMakanan.setVisibility(View.VISIBLE);
+            textViewPesanEmptyDataMakanan.setVisibility(View.VISIBLE);
+        }
+        *//*ItemClickSupport.addTo(recycleViewSarapan).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 showSelectedMakanan(modelMakananArrayList.get(position));
             }
-        });*/
-        dataAdapters.notifyDataSetChanged();
+        });*//*
+        dataAdapters.notifyDataSetChanged();*/
 
         /*kode untuk set adapter
-                ke dataolahraga*/
+                ke dataolahraga*//*
         recycleViewOlahraga = (RecyclerView) view.findViewById(R.id.recycle_view_olahraga);
         RecyclerView.LayoutManager layoutManagerOlahraga = new LinearLayoutManager(getContext());
         recycleViewOlahraga.setLayoutManager(layoutManagerOlahraga);
         dataOlahragaAdapter = new DataOlahragaAdapter((ArrayList<ModelOlahraga>) databaseHandlerOlahraga.getAllDataOlahraga(), getContext());
-        recycleViewOlahraga.setAdapter(dataOlahragaAdapter);
-        dataOlahragaAdapter.notifyDataSetChanged();
 
+        recycleViewOlahraga.setAdapter(dataOlahragaAdapter);
+        if (dataOlahragaAdapter.getItemCount() == 0) {
+            imgOlahraga.setVisibility(View.VISIBLE);
+            textViewPesanEmptyDataOlahraga.setVisibility(View.VISIBLE);
+        }
+        dataOlahragaAdapter.notifyDataSetChanged();
+*/
         /*pref = getContext().getSharedPreferences("userInfo", MODE_PRIVATE);
 
         try {
@@ -208,8 +256,14 @@ public class HomeFragment extends Fragment {
         unbinder.unbind();
     }
 
+    @OnClick(R.id.button_tambahOlahraga)
+    public void onViewClicked() {
+        Intent intent = new Intent(getContext(), RadioButtonActivity.class);
+        startActivity(intent);
+    }
 
-    @OnClick({R.id.button_tambah_makanan, R.id.button_tambahOlahraga})
+
+    /*@OnClick({R.id.button_tambah_makanan, R.id.button_tambahOlahraga})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.button_tambah_makanan:
@@ -223,5 +277,5 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
                 break;
         }
-    }
+    }*/
 }

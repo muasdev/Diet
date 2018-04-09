@@ -1,11 +1,13 @@
 package com.example.muasmakkode.diet;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,10 +18,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.muasmakkode.diet.Awal.KonsulActivity;
 import com.example.muasmakkode.diet.InfoDev.InfoDevActivity;
+import com.example.muasmakkode.diet.UI.KaloriDibakarFragment;
+import com.example.muasmakkode.diet.UI.SetDataFragment;
 import com.example.muasmakkode.diet.db.DatabaseHandler;
+import com.example.muasmakkode.diet.UI.MakananDikonsumsiFragment;
 
 
 public class MainActivity extends AppCompatActivity
@@ -28,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     TextView tv_name, tv_umur;
 
     SharedPreferences sharedPreferences;
+    public static final String PREFERENCE = "dataBmr";
 
 
     @Override
@@ -37,19 +44,38 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        sharedPreferences = getApplicationContext().getSharedPreferences("dataBmr", Context.MODE_PRIVATE);
-        if (sharedPreferences != null) {
+        sharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
+        if (sharedPreferences.contains("my_eaf")) {
             //jadikan home fragment halaman utama
             HomeFragment homeFragment = new HomeFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.framelayout, homeFragment);
             fragmentTransaction.commit();
-
-
         } else {
-            Intent intent = new Intent(getApplicationContext(), KonsulActivity.class);
-            startActivity(intent);
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Anda belum melakukan Diagnosa, Diagnosa sekarang untuk melanjutkan aplikasi");
+            builder.setPositiveButton("Mulai Diagnosa",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(getApplicationContext(), SettingFragment.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+            builder.show();
         }
+
+        /*else {
+            Intent intent = new Intent(this, SettingFragment.class);
+            startActivity(intent);
+            finish();
+
+        }*/
+
+
+
+
 
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -116,13 +142,14 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        /*//noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 
             Intent intent = new Intent(this, SettingFragment.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.action_refresh) {
+        } else*/
+        if (id == R.id.action_refresh) {
 
             HomeFragment homeFragment = new HomeFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -149,13 +176,26 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_makanan) {
 
-            MakananFragment makananFragment = new MakananFragment();
+            MakananDikonsumsiFragment makananDikonsumsiFragment = new MakananDikonsumsiFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.framelayout, makananFragment);
+            fragmentTransaction.replace(R.id.framelayout, makananDikonsumsiFragment);
             fragmentTransaction.commit();
 
-        } else if (id == R.id.nav_riwayat) {
+        } else if (id == R.id.nav_olahraga) {
+            KaloriDibakarFragment kaloriDibakarFragment = new KaloriDibakarFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.framelayout, kaloriDibakarFragment);
+            fragmentTransaction.commit();
 
+        } else if (id == R.id.nav_setting) {
+
+            /*SetDataFragment setDataFragment = new SetDataFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.framelayout, setDataFragment);
+            fragmentTransaction.commit();*/
+
+            Intent intent = new Intent(this, SettingFragment.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_send) {
 

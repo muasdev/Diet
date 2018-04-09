@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
-        <color android:color="#c4d3ff"/>
+        <color android:color="#0dff00" />
     </item>
 
     <item android:id="@+id/progresBar">

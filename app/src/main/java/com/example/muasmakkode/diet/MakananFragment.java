@@ -1,7 +1,9 @@
 package com.example.muasmakkode.diet;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.muasmakkode.diet.Data.CardViewMakananAdapter;
 import com.example.muasmakkode.diet.Data.ItemClickSupport;
 import com.example.muasmakkode.diet.Data.MakananData;
+import com.example.muasmakkode.diet.Data.MakananDataGolonganDarahA;
 import com.example.muasmakkode.diet.Data.MakananModel;
 import com.example.muasmakkode.diet.UI.DetailMakanan;
 
@@ -34,6 +37,9 @@ public class MakananFragment extends Fragment {
     Unbinder unbinder;
     private ArrayList<MakananModel> list;
 
+    SharedPreferences sharedPreferences;
+    String beratBadan;
+
     public MakananFragment() {
         // Required empty public constructor
     }
@@ -48,9 +54,29 @@ public class MakananFragment extends Fragment {
 
 
         recycleViewMakanan.setHasFixedSize(true);
+        sharedPreferences = getContext().getSharedPreferences("dataBmr", Context.MODE_PRIVATE);
+        beratBadan = sharedPreferences.getString("darah", "");
 
         list = new ArrayList<>();
-        list.addAll(MakananData.getListData());
+
+        switch (beratBadan) {
+            case "A":
+                list.addAll(MakananData.getListData());
+                break;
+            case "B":
+                list.addAll(MakananData.getListData());
+                break;
+            case "AB":
+                list.addAll(MakananData.getListData());
+                break;
+            default:
+                list.addAll(MakananDataGolonganDarahA.getListData());
+        }
+
+        /*if (beratBadan = "A") {
+            list.addAll(MakananData.getListData());
+        } else
+            list.addAll(MakananDataGolonganDarahA.getListData());*/
 
         showRecyclerCardView();
 
