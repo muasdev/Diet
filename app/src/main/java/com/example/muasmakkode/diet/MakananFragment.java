@@ -16,6 +16,7 @@ import com.example.muasmakkode.diet.Data.CardViewMakananAdapter;
 import com.example.muasmakkode.diet.Data.ItemClickSupport;
 import com.example.muasmakkode.diet.Data.MakananData;
 import com.example.muasmakkode.diet.Data.MakananDataGolonganDarahA;
+import com.example.muasmakkode.diet.Data.MakananDataGolonganDarahB;
 import com.example.muasmakkode.diet.Data.MakananModel;
 import com.example.muasmakkode.diet.UI.DetailMakanan;
 
@@ -61,16 +62,16 @@ public class MakananFragment extends Fragment {
 
         switch (beratBadan) {
             case "A":
-                list.addAll(MakananData.getListData());
+                list.addAll(MakananDataGolonganDarahA.getListData());
                 break;
             case "B":
-                list.addAll(MakananData.getListData());
+                list.addAll(MakananDataGolonganDarahB.getListData());
                 break;
             case "AB":
                 list.addAll(MakananData.getListData());
                 break;
             default:
-                list.addAll(MakananDataGolonganDarahA.getListData());
+                list.addAll(MakananData.getListData());
         }
 
         /*if (beratBadan = "A") {

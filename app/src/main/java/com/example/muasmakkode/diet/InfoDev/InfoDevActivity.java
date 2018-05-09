@@ -16,8 +16,8 @@ import butterknife.ButterKnife;
 
 public class InfoDevActivity extends AppCompatActivity {
 
-    @BindView(R.id.nomor_hp)
-    TextView nomorHp;
+   /* @BindView(R.id.nomor_hp)
+    TextView nomorHp;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +27,13 @@ public class InfoDevActivity extends AppCompatActivity {
 
     }
 
-    public void telponNomor(View view) {
+    /*public void telponNomor(View view) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + nomorHp.getText().toString()));
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
-    }
+    }*/
 
     //kode untuk pencarian di browser
 //    public void tombolSearch(View view) {

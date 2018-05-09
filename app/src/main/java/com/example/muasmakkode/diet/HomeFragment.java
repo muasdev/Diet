@@ -4,13 +4,15 @@ package com.example.muasmakkode.diet;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.muasmakkode.diet.RadioButton.RadioButtonActivity;
@@ -21,6 +23,8 @@ import com.example.muasmakkode.diet.db.adapter.DataOlahragaAdapter;
 import com.example.muasmakkode.diet.db.helper.DatabaseHandlerOlahraga;
 import com.example.muasmakkode.diet.db.model.ModelMakanan;
 import com.example.muasmakkode.diet.db.model.ModelOlahraga;
+import com.intrusoft.scatter.ChartData;
+import com.intrusoft.scatter.PieChart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +41,8 @@ import butterknife.Unbinder;
 public class HomeFragment extends Fragment {
 
 
-    @BindView(R.id.progresBar)
-    ProgressBar progresBar;
+    /*@BindView(R.id.progresBar)
+    ProgressBar progresBar;*/
 
 
     SharedPreferences pref;
@@ -79,6 +83,24 @@ public class HomeFragment extends Fragment {
     TextView textViewPesanLebihKalori;
     @BindView(R.id.button_tambahOlahraga)
     Button buttonTambahOlahraga;
+    @BindView(R.id.simple_chart)
+    PieChart simpleChart;
+    @BindView(R.id.textView_pesanLebihKaloriDibakar)
+    TextView textViewPesanLebihKaloriDibakar;
+    @BindView(R.id.button_tambah_makanan)
+    Button buttonTambahMakanan;
+    @BindView(R.id.cardView_pesanLebihKaloriDikonsumsi)
+    CardView cardViewPesanLebihKaloriDikonsumsi;
+    @BindView(R.id.cardView_pesanLebihKaloriDibakar)
+    CardView cardViewPesanLebihKaloriDibakar;
+    @BindView(R.id.cardView_peringatanKosong)
+    CardView cardViewPeringatanKosong;
+    @BindView(R.id.cardView_peringatanKarbo)
+    CardView cardViewPeringatanKarbo;
+    @BindView(R.id.cardView_peringatanPro)
+    CardView cardViewPeringatanPro;
+    @BindView(R.id.cardView_peringatanLemak)
+    CardView cardViewPeringatanLemak;
 
 
     private List<ModelMakanan> modelMakananList = new ArrayList<>();
@@ -93,6 +115,10 @@ public class HomeFragment extends Fragment {
     DatabaseHandlerOlahraga databaseHandlerOlahraga;
 
     SharedPreferences sharedPreferences;
+
+    int sumTotalKarbo, sumTotalProtein, sumTotalLemak, kebKalori;
+
+    String nilaiBmr;
 
     private ArrayList<ModelMakanan> modelMakananArrayList;
     private ArrayList<ModelOlahraga> modelOlahragaArrayList;
@@ -114,7 +140,7 @@ public class HomeFragment extends Fragment {
         if (sharedPreferences != null) {
 
 
-            String nilaiBmr = String.valueOf(sharedPreferences.getString("my_eaf", ""));
+            nilaiBmr = String.valueOf(sharedPreferences.getString("my_eaf", ""));
             textViewJudulhalamanFragment.setText("Kebutuhan kalori " + nilaiBmr);
         }
 
@@ -128,42 +154,66 @@ public class HomeFragment extends Fragment {
 
 
         int sumTotalKalori = db.getTotalKalori();
-        textViewTotalKalori.setText("Kalori yang dikonsumsi " + sumTotalKalori);
+        textViewTotalKalori.setText(" " + sumTotalKalori + " kkal");
 
         int sumTotalKaloriDibakar = databaseHandlerOlahraga.getTotalKaloriDibakar();
-        textViewTotalKaloriDibakar.setText("Kalori yang dibakar " + sumTotalKaloriDibakar);
+        textViewTotalKaloriDibakar.setText(" " + sumTotalKaloriDibakar + " kkal");
 
-        int sumTotalKarbo = db.getTotalKarbo();
-        textViewTotalKarbo.setText("Karbo : " + sumTotalKarbo);
+        double kebKarbo = Integer.parseInt(nilaiBmr) * 0.15;
+        double kebPro = Integer.parseInt(nilaiBmr) * 0.25;
+        double kebLemak = Integer.parseInt(nilaiBmr) * 0.15;
 
-        int sumTotalProtein = db.getTotalProtein();
-        textViewTotalProtein.setText("Protein : " + sumTotalProtein);
+        sumTotalKarbo = db.getTotalKarbo();
+        textViewTotalKarbo.setText("Karbo : " + sumTotalKarbo + "/" + (int) kebKarbo);
 
-        int sumTotalLemak = db.getTotalLemak();
-        textViewTotalLemak.setText("Lemak : " + sumTotalLemak);
+        sumTotalProtein = db.getTotalProtein();
+        textViewTotalProtein.setText("Protein : " + sumTotalProtein + "/" + (int) kebPro);
+
+        sumTotalLemak = db.getTotalLemak();
+        textViewTotalLemak.setText("Lemak : " + sumTotalLemak + "/" + (int) kebLemak);
 
 
         /*kode untuk set progres bar*/
         String nilaiBmr = String.valueOf(sharedPreferences.getString("my_eaf", ""));
-        int kebKalori, kaloriDikonsumsi, hasilProgres, kaloriDibakar, net, setProgresBar;
+        int kaloriDikonsumsi, hasilProgres, kaloriDibakar, net, setProgresBar;
         kebKalori = Integer.parseInt(nilaiBmr);
         kaloriDikonsumsi = sumTotalKalori;
         kaloriDibakar = sumTotalKaloriDibakar;
         net = kaloriDikonsumsi - kaloriDibakar;
         hasilProgres = kebKalori - net;
+
+        textViewTotalKebutuhankalori.setText("sisa " + hasilProgres + " dari " + kebKalori);
         /*maks = 1000;
         setProgresBar = maks - hasilProgres;*/
-        progresBar.setMax(kebKalori);
-        progresBar.setProgress(kaloriDikonsumsi);
+        /*progresBar.setMax(kebKalori);
+        progresBar.setProgress(kaloriDikonsumsi);*/
         if (kaloriDikonsumsi > kebKalori) {
             /*Toast.makeText(getContext(), " lebih ", Toast.LENGTH_SHORT).show();*/
             /*int color = 0xFF00FF00;
             progresBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
             progresBar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);*/
-            textViewPesanLebihKalori.setVisibility(View.VISIBLE);
-            buttonTambahOlahraga.setVisibility(View.VISIBLE);
+            cardViewPeringatanKosong.setVisibility(View.GONE);
+            cardViewPesanLebihKaloriDikonsumsi.setVisibility(View.VISIBLE);
         }
-        textViewTotalKebutuhankalori.setText("sisa " + hasilProgres + " dari " + kebKalori);
+        if (kaloriDibakar > kaloriDikonsumsi) {
+            cardViewPeringatanKosong.setVisibility(View.GONE);
+            cardViewPesanLebihKaloriDibakar.setVisibility(View.VISIBLE);
+        }
+        if (sumTotalKarbo > kebKarbo) {
+            cardViewPeringatanKosong.setVisibility(View.GONE);
+            cardViewPeringatanKarbo.setVisibility(View.VISIBLE);
+        }
+        if (sumTotalProtein > kebPro) {
+            cardViewPeringatanKosong.setVisibility(View.GONE);
+            cardViewPeringatanPro.setVisibility(View.VISIBLE);
+        }
+        if (sumTotalLemak > kebLemak) {
+            cardViewPeringatanKosong.setVisibility(View.GONE);
+            cardViewPeringatanLemak.setVisibility(View.VISIBLE);
+        }
+
+
+        charpie();
 
 
         /*kode untuk menampilkan pesan jika kelebihan konsumsi kalori*/
@@ -230,6 +280,32 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    public void charpie() {
+        /*List<ChartData> data = new ArrayList<>();
+        data.add(new ChartData("First", 35));     //ARGS-> (display text, percentage)
+        data.add(new ChartData("Second", 25));
+        data.add(new ChartData("Third", 30));
+        data.add(new ChartData("Fourth", 10));
+        pieChart.setChartData(data);*/
+
+//chart data with specified colors
+        List<ChartData> data = new ArrayList<>();
+        data = new ArrayList<>();
+
+//ARGS-> (displayText, percentage, textColor, backgroundColor)
+        int hasilKarb = (int) (0.60 * kebKalori);
+        data.add(new ChartData(String.valueOf(sumTotalKarbo) + " / " + hasilKarb, 60, Color.WHITE, Color.parseColor("#0091EA")));    //ARGS-> (display text, percentage)
+        data.add(new ChartData(String.valueOf(sumTotalProtein) + " / " + (int) (0.25 * kebKalori), 25, Color.WHITE, Color.parseColor("#FF4081")));    //ARGS-> (display text, percentage)
+        data.add(new ChartData(String.valueOf(sumTotalLemak) + " / " + (int) (0.15 * kebKalori), 15, Color.WHITE, Color.parseColor("#FFFFE600")));    //ARGS-> (display text, percentage)
+        /*data.add(new ChartData("Second", 25));*/
+
+        /*data.add(new ChartData("First", 35, Color.WHITE, Color.parseColor("#0091EA")));
+        data.add(new ChartData("Second", 25, Color.WHITE, Color.parseColor("#33691E")));
+        data.add(new ChartData("Third", 30, Color.DKGRAY, Color.parseColor("#F57F17")));
+        data.add(new ChartData("Fourth", 10, Color.DKGRAY, Color.parseColor("#FFD600")));*/
+        simpleChart.setChartData(data);
+    }
+
     private void showSelectedMakanan(ModelMakanan modelMakanan) {
         Intent i = new Intent(getContext(), DetailKonsumsi.class);
         modelMakanan.get_id();
@@ -256,11 +332,23 @@ public class HomeFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.button_tambahOlahraga)
-    public void onViewClicked() {
-        Intent intent = new Intent(getContext(), RadioButtonActivity.class);
-        startActivity(intent);
+
+    @OnClick({R.id.button_tambahOlahraga, R.id.button_tambah_makanan})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.button_tambahOlahraga:
+                Intent intent = new Intent(getContext(), RadioButtonActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.button_tambah_makanan:
+                MakananFragment makananFragment = new MakananFragment();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout, makananFragment);
+                fragmentTransaction.commit();
+                break;
+        }
     }
+
 
 
     /*@OnClick({R.id.button_tambah_makanan, R.id.button_tambahOlahraga})

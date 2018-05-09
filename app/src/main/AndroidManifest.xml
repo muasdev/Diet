@@ -32,7 +32,12 @@
         <activity android:name=".Awal.KonsulKetigaActivity" />
         <activity android:name=".UI.DetailKonsumsi" />
         <activity android:name=".SettingFragment" />
-        <activity android:name=".Awal.KonsulActivity"></activity>
+        <activity android:name=".Awal.KonsulActivity" />
+        <activity
+            android:name=".fab"
+            android:label="@string/title_activity_fab"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".UI.TentangAplikasi"></activity>
     </application>
 
 </manifest>

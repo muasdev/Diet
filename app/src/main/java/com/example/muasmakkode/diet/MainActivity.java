@@ -149,14 +149,14 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             return true;
         } else*/
-        if (id == R.id.action_refresh) {
+        /*if (id == R.id.action_refresh) {
 
             HomeFragment homeFragment = new HomeFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.framelayout, homeFragment);
             fragmentTransaction.commit();
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
