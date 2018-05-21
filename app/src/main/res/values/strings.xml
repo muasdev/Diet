@@ -54,7 +54,6 @@
     <string name="nama_makanan">Nama makanan</string>
     <string name="rb_text_panahan">Panahan</string>
     <string name="isiTextViewEmptyDataOlahraga">Tap tombol “+” di bawah untuk menambahkan data</string>
-    <string name="isiTextViewEmptyDataMakanan">Mulai tambah data anda sekarang, untuk mengetahui total kalori yang anda telah konsumsi</string>
     <string name="isiTextViewEmptyDataMakanan2">Tap tombol “+” di bawah untuk menambahkan data</string>
     <string name="pesan_lebih_kalori">Jangan sampai mengonsumsi kalori terlalu banyak karena kalori yang berlebih akan disimpan sebagai lemak dalam tubuh
         dan dapat menyebabkan kenaikan berat badan. Jaga keseimbangan energi dalam tubuh dengan
@@ -67,4 +66,6 @@
     <string name="pesan_peringatan_karbo">Konsumsi karbohidrat anda berlebih</string>
     <string name="pesan_peringatan_pro">Konsumsi protein anda berlebih</string>
     <string name="pesan_peringatan_lemak">Konsumsi lemak anda berlebih</string>
+    <string name="textView_tentang">Saat diet kita harus menggunakan metode atau cara yang benar, salah satunya dapat dilakukan dengan cara memperhatikan keseimbangan jumlah kalori dalam tubuh. Namun sebagian besar orang tidak mengetahui apakah kalori yang dikonsumsi dan kalori yang dibakar telah seimbang berdasarkan kebutuhan kalori untuk tubuh, hal inilah yang mengakibatkan munculnya kelebihan bahkan kekurangan kalori yang berdampak bagi kesehatan tubuh.</string>
+    <string name="title_olahraga_activity">Daftar olahraga</string>
 </resources>

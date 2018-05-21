@@ -1,5 +1,6 @@
 package com.example.muasmakkode.diet.UI;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -108,7 +109,7 @@ public class DetailMakanan extends AppCompatActivity {
                     hasil_lemak = Integer.parseInt(editTextJumlahTakaran.getText().toString())
                             * Integer.parseInt(makananModel.getLemak_makanan().toString());
 
-                    textViewDetailKaloriMakanan.setText(String.valueOf(hasil_kalori));
+                    textViewDetailKaloriMakanan.setText(String.valueOf((int) hasil_kalori));
                     textViewDetailKarbohidrat.setText(String.valueOf(hasil_karbo));
                     textViewDetailProtein.setText(String.valueOf(hasil_protein));
                     textViewDetailLemak.setText(String.valueOf(hasil_lemak));
@@ -142,6 +143,7 @@ public class DetailMakanan extends AppCompatActivity {
 
         db.addContacts(new ModelMakanan(nama, urt, kalori, karbohidrat, protein, lemak));
         Toast.makeText(this, "Berhasil menambahkan " + nama + " ke dalam daftar", Toast.LENGTH_LONG).show();
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

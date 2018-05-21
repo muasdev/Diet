@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -26,8 +28,6 @@ public class SettingFragment extends AppCompatActivity {
     RadioButton rbWanita;
     @BindView(R.id.radio_grup_jenis_kelamin)
     RadioGroup radioGrupJenisKelamin;
-    @BindView(R.id.editText_Umur)
-    TextInputEditText editTextUmur;
     @BindView(R.id.editText_beratBadan)
     TextInputEditText editTextBeratBadan;
     @BindView(R.id.editText_tinggiBadan)
@@ -74,12 +74,16 @@ public class SettingFragment extends AppCompatActivity {
     RadioButton rbDarahO;
     @BindView(R.id.radio_grup_jenis_goldar)
     RadioGroup radioGrupJenisGoldar;
+    @BindView(R.id.editText_Umur)
+    EditText editTextUmur;
+    @BindView(R.id.daftar_nama_layout)
+    TextInputLayout daftarNamaLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_fragment);
-
         sharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
 
         /*if(sharedPreferences.contains("my_eaf")) {
@@ -117,7 +121,7 @@ public class SettingFragment extends AppCompatActivity {
         // find the radio button by returned id
         radioButton = (RadioButton) findViewById(checkId);*/
 
-        radioButton = (RadioButton) findViewById(checkIdDarah);
+        radioButton = findViewById(checkIdDarah);
 
         if (radioGrupJenisKelamin.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "pilih jenis kelamin", Toast.LENGTH_SHORT).show();

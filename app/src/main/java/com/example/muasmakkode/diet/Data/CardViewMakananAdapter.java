@@ -64,9 +64,9 @@ public class CardViewMakananAdapter extends RecyclerView.Adapter<CardViewMakanan
 
         public CardViewViewHolder(View itemView){
             super(itemView);
-            tvNama = (TextView) itemView.findViewById(R.id.tv_item_nama_makanan);
-            tvJenisMakanan = (TextView) itemView.findViewById(R.id.tv_item_jenis_makanan);
-            tvKaloriMakanan = (TextView) itemView.findViewById(R.id.tv_item_kalori_makanan);
+            tvNama = itemView.findViewById(R.id.tv_item_nama_makanan);
+            tvJenisMakanan = itemView.findViewById(R.id.tv_item_jenis_makanan);
+            tvKaloriMakanan = itemView.findViewById(R.id.tv_item_kalori_makanan);
         }
     }
 }

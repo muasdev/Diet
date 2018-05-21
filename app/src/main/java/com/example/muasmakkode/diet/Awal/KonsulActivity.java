@@ -96,7 +96,7 @@ public class KonsulActivity extends AppCompatActivity {
         final int checkId = radioGrupAktifitasHarian.getCheckedRadioButtonId();
 
         // find the radio button by returned id
-        radioButton = (RadioButton) findViewById(selectedId);
+        radioButton = findViewById(selectedId);
         // find the radio button by returned id
         /*radioButton = (RadioButton) findViewById(checkId);*/
 

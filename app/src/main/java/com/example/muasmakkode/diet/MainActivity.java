@@ -24,6 +24,7 @@ import com.example.muasmakkode.diet.Awal.KonsulActivity;
 import com.example.muasmakkode.diet.InfoDev.InfoDevActivity;
 import com.example.muasmakkode.diet.UI.KaloriDibakarFragment;
 import com.example.muasmakkode.diet.UI.SetDataFragment;
+import com.example.muasmakkode.diet.UI.TentangAplikasi;
 import com.example.muasmakkode.diet.db.DatabaseHandler;
 import com.example.muasmakkode.diet.UI.MakananDikonsumsiFragment;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         sharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
@@ -92,13 +93,13 @@ public class MainActivity extends AppCompatActivity
         });
 */
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         //code tambahan
         //digunakan untuk set Text ke header navigation drawer dari setting dan sharedPreferences
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -181,6 +182,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.framelayout, makananDikonsumsiFragment);
             fragmentTransaction.commit();
 
+
         } else if (id == R.id.nav_olahraga) {
             KaloriDibakarFragment kaloriDibakarFragment = new KaloriDibakarFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -199,13 +201,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-            Intent intent = new Intent(this, InfoDevActivity.class);
+            Intent intent = new Intent(this, TentangAplikasi.class);
             startActivity(intent);
 
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

@@ -8,7 +8,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -123,6 +125,8 @@ public class HomeFragment extends Fragment {
     private ArrayList<ModelMakanan> modelMakananArrayList;
     private ArrayList<ModelOlahraga> modelOlahragaArrayList;
 
+    private Toolbar toolbar;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -134,6 +138,7 @@ public class HomeFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        getActivity().setTitle("Menu Monitoring");
         unbinder = ButterKnife.bind(this, view);
 
         sharedPreferences = getContext().getSharedPreferences("dataBmr", Context.MODE_PRIVATE);
@@ -159,9 +164,9 @@ public class HomeFragment extends Fragment {
         int sumTotalKaloriDibakar = databaseHandlerOlahraga.getTotalKaloriDibakar();
         textViewTotalKaloriDibakar.setText(" " + sumTotalKaloriDibakar + " kkal");
 
-        double kebKarbo = Integer.parseInt(nilaiBmr) * 0.15;
+        double kebKarbo = Integer.parseInt(nilaiBmr) * 0.65;
         double kebPro = Integer.parseInt(nilaiBmr) * 0.25;
-        double kebLemak = Integer.parseInt(nilaiBmr) * 0.15;
+        double kebLemak = Integer.parseInt(nilaiBmr) * 0.10;
 
         sumTotalKarbo = db.getTotalKarbo();
         textViewTotalKarbo.setText("Karbo : " + sumTotalKarbo + "/" + (int) kebKarbo);

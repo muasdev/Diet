@@ -55,12 +55,27 @@
 
             </RadioGroup>
 
-            <android.support.design.widget.TextInputEditText
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/daftar_nama_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintTextAppearance="@style/text_in_layout_hint_Style">
+
+                <EditText
+                    android:id="@+id/editText_Umur"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_user_umur"
+                    android:textSize="25sp"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!--<android.support.design.widget.TextInputLayout
                 android:id="@+id/editText_Umur"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Umur"
-                android:inputType="number" />
+                android:inputType="number" />-->
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/editText_beratBadan"
@@ -197,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="false"
-                        android:text="o" />
+                        android:text="O" />
 
                 </RadioGroup>
 
