@@ -37,6 +37,10 @@ public class MainActivity extends AppCompatActivity
     SharedPreferences sharedPreferences;
     public static final String PREFERENCE = "dataBmr";
 
+    private boolean isUtama = false;
+    private boolean isMakanan = false;
+    private boolean isOlahraga = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +177,10 @@ public class MainActivity extends AppCompatActivity
             HomeFragment homeFragment = new HomeFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.framelayout, homeFragment);
+            isUtama = true;
+            isMakanan = false;
+            isOlahraga = false;
+            cekHalaman();
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_makanan) {
@@ -180,6 +188,9 @@ public class MainActivity extends AppCompatActivity
             MakananDikonsumsiFragment makananDikonsumsiFragment = new MakananDikonsumsiFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.framelayout, makananDikonsumsiFragment);
+            isUtama = false;
+            isMakanan = true;
+            isOlahraga = false;
             fragmentTransaction.commit();
 
 
@@ -188,6 +199,9 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.framelayout, kaloriDibakarFragment);
             fragmentTransaction.commit();
+            isUtama = false;
+            isMakanan = false;
+            isOlahraga = true;
 
         } else if (id == R.id.nav_setting) {
 
@@ -210,5 +224,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void cekHalaman(){
+        if (isUtama) {
+            getSupportActionBar().setSubtitle(getResources().getString(R.string.monitoring));
+        } else if (isMakanan){
+            getSupportActionBar().setSubtitle(getResources().getString(R.string.makanan));
+        } else {
+            getSupportActionBar().setSubtitle(getResources().getString(R.string.olahraga));
+        }
     }
 }

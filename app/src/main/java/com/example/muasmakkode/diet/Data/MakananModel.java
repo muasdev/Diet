@@ -20,6 +20,16 @@ public class MakananModel implements Parcelable {
     private String ukuran_saji;
     private String kalori_makanan;
 
+    public int getPoster_makanan() {
+        return Integer.parseInt(poster_makanan);
+    }
+
+    public void setPoster_makanan(String poster_makanan) {
+        this.poster_makanan = poster_makanan;
+    }
+
+    private String poster_makanan;
+
     public String getKarbo_makanan() {
         return karbo_makanan;
     }
@@ -81,6 +91,7 @@ public class MakananModel implements Parcelable {
         dest.writeString(this.karbo_makanan);
         dest.writeString(this.protein_makanan);
         dest.writeString(this.lemak_makanan);
+        dest.writeString(this.poster_makanan);
     }
 
     protected MakananModel(Parcel in) {
@@ -90,6 +101,7 @@ public class MakananModel implements Parcelable {
         this.karbo_makanan = in.readString();
         this.protein_makanan = in.readString();
         this.lemak_makanan = in.readString();
+        this.poster_makanan = in.readString();
     }
 
     public static final Creator<MakananModel> CREATOR = new Creator<MakananModel>() {

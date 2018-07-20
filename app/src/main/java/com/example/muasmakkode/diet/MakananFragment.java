@@ -106,6 +106,7 @@ public class MakananFragment extends Fragment {
         makananModel.getKarbo_makanan();
         makananModel.getProtein_makanan();
         makananModel.getLemak_makanan();
+        makananModel.getPoster_makanan();
 
         i.putExtra("makananModel", makananModel);
         startActivity(i);

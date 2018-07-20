@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ import com.example.muasmakkode.diet.MainActivity;
 import com.example.muasmakkode.diet.R;
 import com.example.muasmakkode.diet.db.DatabaseHandler;
 import com.example.muasmakkode.diet.db.model.ModelMakanan;
+
+import java.text.DecimalFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,10 +46,11 @@ public class DetailMakanan extends AppCompatActivity {
     @BindView(R.id.textView_jumlahurt)
     TextView textViewJumlahurt;
 
-    int hasil_karbo;
+    ImageView imageViewPosterMakanan;
+    double hasil_karbo;
     double hasil_kalori;
-    int hasil_protein;
-    int hasil_lemak;
+    double hasil_protein;
+    double hasil_lemak;
 
     String judulTitleBar;
 
@@ -54,11 +58,16 @@ public class DetailMakanan extends AppCompatActivity {
 
     private DatabaseHandler db;
 
+    DecimalFormat df = new DecimalFormat("#.##");
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_makanan);
         ButterKnife.bind(this);
+
+        imageViewPosterMakanan = (ImageView) findViewById(R.id.imageView_poster_makanan);
 
         final MakananModel makananModel;
         makananModel = getIntent().getParcelableExtra("makananModel");
@@ -84,6 +93,7 @@ public class DetailMakanan extends AppCompatActivity {
         textViewDetailProtein.setText(makananModel.getProtein_makanan());
         textViewDetailLemak.setText(makananModel.getLemak_makanan());
         textViewJumlahurt.setText(makananModel.getUkuran_saji());
+        imageViewPosterMakanan.setImageResource(makananModel.getPoster_makanan());
 
         editTextJumlahTakaran.addTextChangedListener(new TextWatcher() {
             @Override
@@ -98,21 +108,21 @@ public class DetailMakanan extends AppCompatActivity {
 
 
                     hasil_karbo = Integer.parseInt(editTextJumlahTakaran.getText().toString())
-                            * Integer.parseInt(makananModel.getKarbo_makanan().toString());
+                            * Double.parseDouble(makananModel.getKarbo_makanan().toString());
 
                     hasil_kalori = Integer.parseInt(editTextJumlahTakaran.getText().toString())
-                            * Integer.parseInt(makananModel.getKalori_makanan().toString());
+                            * Double.parseDouble(makananModel.getKalori_makanan().toString());
 
                     hasil_protein = Integer.parseInt(editTextJumlahTakaran.getText().toString())
-                            * Integer.parseInt(makananModel.getProtein_makanan().toString());
+                            * Double.parseDouble(makananModel.getProtein_makanan().toString());
 
                     hasil_lemak = Integer.parseInt(editTextJumlahTakaran.getText().toString())
-                            * Integer.parseInt(makananModel.getLemak_makanan().toString());
+                            * Double.parseDouble(makananModel.getLemak_makanan().toString());
 
                     textViewDetailKaloriMakanan.setText(String.valueOf((int) hasil_kalori));
-                    textViewDetailKarbohidrat.setText(String.valueOf(hasil_karbo));
-                    textViewDetailProtein.setText(String.valueOf(hasil_protein));
-                    textViewDetailLemak.setText(String.valueOf(hasil_lemak));
+                    textViewDetailKarbohidrat.setText(String.valueOf(df.format(hasil_karbo)));
+                    textViewDetailProtein.setText(String.valueOf(df.format(hasil_protein)));
+                    textViewDetailLemak.setText(String.valueOf(df.format(hasil_lemak)));
 
 
                 } catch (Exception ex) {

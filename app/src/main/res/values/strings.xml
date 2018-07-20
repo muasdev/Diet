@@ -68,4 +68,7 @@
     <string name="pesan_peringatan_lemak">Konsumsi lemak anda berlebih</string>
     <string name="textView_tentang">Saat diet kita harus menggunakan metode atau cara yang benar, salah satunya dapat dilakukan dengan cara memperhatikan keseimbangan jumlah kalori dalam tubuh. Namun sebagian besar orang tidak mengetahui apakah kalori yang dikonsumsi dan kalori yang dibakar telah seimbang berdasarkan kebutuhan kalori untuk tubuh, hal inilah yang mengakibatkan munculnya kelebihan bahkan kekurangan kalori yang berdampak bagi kesehatan tubuh.</string>
     <string name="title_olahraga_activity">Daftar olahraga</string>
+    <string name="monitoring">Monitoring</string>
+    <string name="makanan">Makanan</string>
+    <string name="olahraga">Olahraga</string>
 </resources>
