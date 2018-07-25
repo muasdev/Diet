@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -13,25 +12,21 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.muasmakkode.diet.db.DataAdapter;
+import com.example.muasmakkode.diet.db.DatabaseHandler;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SettingFragment extends AppCompatActivity {
 
-
-    @BindView(R.id.editText_Nama)
-    TextInputEditText editTextNama;
     @BindView(R.id.rb_pria)
     RadioButton rbPria;
     @BindView(R.id.rb_wanita)
     RadioButton rbWanita;
     @BindView(R.id.radio_grup_jenis_kelamin)
     RadioGroup radioGrupJenisKelamin;
-    @BindView(R.id.editText_beratBadan)
-    TextInputEditText editTextBeratBadan;
-    @BindView(R.id.editText_tinggiBadan)
-    TextInputEditText editTextTinggiBadan;
     @BindView(R.id.istirahat)
     RadioButton istirahat;
     @BindView(R.id.ringanSekali)
@@ -64,7 +59,7 @@ public class SettingFragment extends AppCompatActivity {
     String umur, beratBadan, tinggiBadan;
     @BindView(R.id.radio_grup_aktifitas_harian)
     RadioGroup radioGrupAktifitasHarian;
-    @BindView(R.id.rb_darahA)
+    /*@BindView(R.id.rb_darahA)
     RadioButton rbDarahA;
     @BindView(R.id.rb_darahB)
     RadioButton rbDarahB;
@@ -73,11 +68,20 @@ public class SettingFragment extends AppCompatActivity {
     @BindView(R.id.rb_darahO)
     RadioButton rbDarahO;
     @BindView(R.id.radio_grup_jenis_goldar)
-    RadioGroup radioGrupJenisGoldar;
+    RadioGroup radioGrupJenisGoldar;*/
     @BindView(R.id.editText_Umur)
     EditText editTextUmur;
+    @BindView(R.id.editText_beratBadan)
+    EditText editTextBeratBadan;
+    @BindView(R.id.editText_Nama)
+    EditText editTextNama;
+    @BindView(R.id.editText_tinggiBadan)
+    EditText editTextTinggiBadan;
     @BindView(R.id.daftar_nama_layout)
     TextInputLayout daftarNamaLayout;
+
+    DataAdapter dataAdapters;
+    DatabaseHandler db;
 
 
     @Override
@@ -113,7 +117,7 @@ public class SettingFragment extends AppCompatActivity {
     public void cekJenisKelamin() {
         final int selectedId = radioGrupJenisKelamin.getCheckedRadioButtonId();
         final int checkId = radioGrupAktifitasHarian.getCheckedRadioButtonId();
-        final int checkIdDarah = radioGrupJenisGoldar.getCheckedRadioButtonId();
+        /*final int checkIdDarah = radioGrupJenisGoldar.getCheckedRadioButtonId();*/
 
 
         /*// find the radio button by returned id
@@ -121,7 +125,7 @@ public class SettingFragment extends AppCompatActivity {
         // find the radio button by returned id
         radioButton = (RadioButton) findViewById(checkId);*/
 
-        radioButton = findViewById(checkIdDarah);
+        radioButton = findViewById(selectedId);
 
         if (radioGrupJenisKelamin.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "pilih jenis kelamin", Toast.LENGTH_SHORT).show();
@@ -257,7 +261,7 @@ public class SettingFragment extends AppCompatActivity {
 
         editor.putString("my_eaf", String.valueOf(totalKebutuhanKalori));
         editor.putString("berat_badan", beratBadan);
-        editor.putString("darah", textRadioButton);
+        /*editor.putString("darah", textRadioButton);*/
 
         editor.commit();
 
@@ -271,6 +275,7 @@ public class SettingFragment extends AppCompatActivity {
 
         cekJenisKelamin();
         /*cekJenisAktifitas();*/
+
     }
 
 }

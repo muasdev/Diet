@@ -15,21 +15,35 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/secondaryDarkColor"
+                android:text="Silahkan isi form dibawah ini"
                 android:textAlignment="center"
-                android:background="@color/colorPrimary"
-                android:text="Silahkan isi form dibawah ini" />
+                android:textColor="#000"
+                android:layout_marginBottom="@dimen/activity_margin"/>
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/editText_Nama"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nama" />
+                app:hintTextAppearance="@style/text_in_layout_hint_Style">
+
+                <EditText
+                    android:id="@+id/editText_Nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama" />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jenis Kelamin"
+                android:layout_marginTop="@dimen/activity_margin"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
 
             <RadioGroup
                 android:id="@+id/radio_grup_jenis_kelamin"
@@ -66,7 +80,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_user_umur"
-                    android:textSize="25sp"
                     android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
@@ -77,28 +90,40 @@
                 android:hint="Umur"
                 android:inputType="number" />-->
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/editText_beratBadan"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Berat badan"
-                android:inputType="number" />
+                app:hintTextAppearance="@style/text_in_layout_hint_Style">
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/editText_tinggiBadan"
+                <EditText
+                    android:id="@+id/editText_beratBadan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Berat badan"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tinggi badan"
-                android:inputType="number" />
+                app:hintTextAppearance="@style/text_in_layout_hint_Style">
+
+                <EditText
+                    android:id="@+id/editText_tinggiBadan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tinggi badan"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:background="#4052b5"
+                android:background="@color/secondaryDarkColor"
                 android:text="Aktivitas harian"
-                android:textColor="#000"
-                android:textSize="18sp" />
+                android:textAlignment="center"
+                android:textColor="#000" />
 
             <!--<TextView
                 android:layout_width="match_parent"
@@ -158,7 +183,7 @@
 
             </RadioGroup>
 
-            <TextView
+            <!--<TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -216,12 +241,14 @@
 
                 </RadioGroup>
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <Button
                 android:id="@+id/button_simpan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/button"
+                android:layout_marginTop="@dimen/activity_margin"
                 android:text="Simpan" />
         </LinearLayout>
     </android.support.v7.widget.CardView>

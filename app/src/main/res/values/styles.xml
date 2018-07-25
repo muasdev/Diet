@@ -53,7 +53,11 @@
 
     <style name="text_in_layout_hint_Style">
         <item name="android:textColor">#000000</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="button">
+        <item name="android:background">@color/secondaryDarkColor</item>
     </style>
 
 </resources>
