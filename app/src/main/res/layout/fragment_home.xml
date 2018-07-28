@@ -218,27 +218,17 @@
                 </View>
             </LinearLayout>
 
-
-            <com.intrusoft.scatter.PieChart
-                android:id="@+id/simple_chart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-
             <android.support.v7.widget.CardView
                 android:id="@+id/cardView_peringatanKosong"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 app:cardCornerRadius="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -270,8 +260,8 @@
                 android:id="@+id/cardView_pesanLebihKaloriDikonsumsi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:visibility="gone"
                 app:cardCornerRadius="16dp">
 
@@ -320,8 +310,8 @@
                 android:id="@+id/cardView_pesanLebihKaloriDibakar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:visibility="gone"
                 app:cardCornerRadius="16dp">
 
@@ -356,10 +346,10 @@
                         android:id="@+id/button_tambah_makanan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginBottom="8dp"
                         android:layout_marginTop="8dp"
                         android:background="@color/secondaryDarkColor"
-                        android:layout_gravity="center"
                         android:text="+ Makanan" />
 
                 </LinearLayout>
@@ -370,9 +360,9 @@
                 android:id="@+id/cardView_peringatanKarbo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:visibility="gone"
-                android:layout_marginTop="16dp"
                 app:cardCornerRadius="16dp">
 
                 <LinearLayout
@@ -412,8 +402,8 @@
                 android:id="@+id/cardView_peringatanPro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:visibility="gone"
                 app:cardCornerRadius="16dp">
 
@@ -495,99 +485,5 @@
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="8dp"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:id="@+id/txtNomorurut"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:text="Makanan yang dikonsumsi"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/button_tambah_makanan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="+ Makanan" />
-
-        <ImageView
-            android:id="@+id/imgMakanan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu_share"
-            android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/textView_PesanEmptyDataMakanan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/isiTextViewEmptyDataOlahraga"
-            android:visibility="gone"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycle_view_sarapan"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp">
-
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="8dp"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:id="@+id/txtDaftarOlahraga"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:text="Olahraga"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/button_tambahOlahraga"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="+ Olahraga" />
-
-        <ImageView
-            android:id="@+id/imgOlahraga"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu_share"
-            android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/textView_PesanEmptyDataOlahraga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/isiTextViewEmptyDataOlahraga"
-            android:visibility="gone"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycle_view_olahraga"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp">
-
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>-->
 
 </FrameLayout>

@@ -24,7 +24,8 @@
                 android:title="Diagnosa" />
             <item
                 android:id="@+id/nav_send"
-                android:title="Tentang" />
+                android:title="Tentang"
+                android:icon="@drawable/about"/>
         </menu>
     </item>
 

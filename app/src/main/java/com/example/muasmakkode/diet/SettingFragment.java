@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.muasmakkode.diet.db.DataAdapter;
 import com.example.muasmakkode.diet.db.DatabaseHandler;
+import com.example.muasmakkode.diet.db.helper.DatabaseHandlerOlahraga;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -82,6 +83,7 @@ public class SettingFragment extends AppCompatActivity {
 
     DataAdapter dataAdapters;
     DatabaseHandler db;
+    DatabaseHandlerOlahraga databaseHandlerOlahraga;
 
 
     @Override
@@ -272,6 +274,12 @@ public class SettingFragment extends AppCompatActivity {
 
     @OnClick(R.id.button_simpan)
     public void onViewClicked() {
+
+        db = new DatabaseHandler(this);
+        databaseHandlerOlahraga = new DatabaseHandlerOlahraga(this);
+
+        db.deleteAll();
+        databaseHandlerOlahraga.deleteAll();
 
         cekJenisKelamin();
         /*cekJenisAktifitas();*/

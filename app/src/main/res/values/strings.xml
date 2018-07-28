@@ -55,24 +55,30 @@
     <string name="rb_text_panahan">Panahan</string>
     <string name="isiTextViewEmptyDataOlahraga">Tap tombol “+” di bawah untuk menambahkan data</string>
     <string name="isiTextViewEmptyDataMakanan2">Tap tombol “+” di bawah untuk menambahkan data</string>
-    <string name="pesan_lebih_kalori">Jangan sampai mengonsumsi kalori terlalu banyak karena kalori yang berlebih akan disimpan sebagai lemak dalam tubuh
-        dan dapat menyebabkan kenaikan berat badan. Jaga keseimbangan energi dalam tubuh dengan
-    seimbang kalori yang dimakan dan kalori yang digunakan (dibakar). Ayo mulai berolahraga untuk bakar kalori!</string>
+    <string name="pesan_lebih_kalori">Hati-hati mengonsumsi kalori terlalu banyak karena memiliki banyak dampak
+        yang buruk bagi kesehatan. Jaga keseimbangan energi dalam tubuh dengan
+    seimbang kalori yang dimakan dan kalori yang digunakan (dibakar).
+        Ayo mulai berolahraga untuk bakar kalori!</string>
     <string name="pesan_lebih_kalori_dibakar">hati-hati, kamu telah membakar kalori berlebih. Kamu bisa lemas jika kalori yang dibakar lebih banyak
         dari yang dikonsumsi
     </string>
     <string name="title_activity_fab">fab</string>
     <string name="pesan_peringatan_kosong">Belum ada peringatan</string>
-    <string name="pesan_peringatan_karbo">Konsumsi karbohidrat anda berlebih</string>
-    <string name="pesan_peringatan_pro">Konsumsi protein anda berlebih</string>
-    <string name="pesan_peringatan_lemak">Konsumsi lemak anda berlebih</string>
+    <string name="pesan_peringatan_karbo">Konsumsi karbohidrat anda berlebih
+    \n kurangi konsumsi makanan yang mengandung karbohidrat tinggi seperti nasi
+    </string>
+    <string name="pesan_peringatan_pro">Konsumsi protein anda berlebih
+    \n kurangi konsumsi makanan yang mengandung protein tinggi seperti hati ayam
+    </string>
+    <string name="pesan_peringatan_lemak">Konsumsi lemak anda berlebih
+    \n kurangi konsumsi makanan yang mengandung lemak tinggi seperti alpukat
+    </string>
     <string name="textView_tentang">Saat diet kita harus menggunakan metode atau cara yang benar,
         salah satunya dapat dilakukan dengan cara menjaga dan mempertahankan fungsi tubuh,
         kita perlu mengatur keseimbangan antara energi yang dikeluarkan atau yang diistilahkan
         sebagai keluaran energi (calory output/calory expenditure) dengan energi yang berasal dari makanan atau
         asupan makanan (calory intake/calory input).
-
-        aplikasi untuk membantu pengguna dalam melakukan diet dengan memberikan informasi mengenai jumlah
+        \n \n Aplikasi ini untuk membantu pengguna dalam melakukan diet dengan memberikan informasi mengenai jumlah
         kebutuhan kalori harian, kalori pada makanan berdasarkan golongan darah, kalori yang keluar dari
         aktivitas olahraga dan mengetahui apakah total kalori dalam tubuh sudah mencukupi kebutuhan kalori harian
         tubuh selama periode 24 jam.
@@ -81,4 +87,5 @@
     <string name="monitoring">Monitoring</string>
     <string name="makanan">Makanan</string>
     <string name="olahraga">Olahraga</string>
+    <string name="title_tentang">Tentang Aplikasi</string>
 </resources>

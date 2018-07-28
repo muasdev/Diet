@@ -25,7 +25,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".Coba" />
         <activity android:name=".DetilAktifitas" />
-        <activity android:name=".UI.DetailMakanan" />
+        <activity android:name=".UI.DetailMakanan"
+            android:label="Detail Makanan"/>
         <activity android:name=".InfoDev.InfoDevActivity" />
         <activity
             android:name=".RadioButton.RadioButtonActivity"
@@ -43,7 +44,9 @@
             android:name=".fab"
             android:label="@string/title_activity_fab"
             android:theme="@style/AppTheme" />
-        <activity android:name=".UI.TentangAplikasi"></activity>
+        <activity android:name=".UI.TentangAplikasi"
+            android:label="Tentang Aplikasi"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>
