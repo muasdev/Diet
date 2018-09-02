@@ -4,13 +4,12 @@ package com.example.muasmakkode.diet;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.muasmakkode.diet.RadioButton.RadioButtonActivity;
-import com.example.muasmakkode.diet.UI.DetailKonsumsi;
 import com.example.muasmakkode.diet.db.DataAdapter;
 import com.example.muasmakkode.diet.db.DatabaseHandler;
 import com.example.muasmakkode.diet.db.adapter.DataOlahragaAdapter;
@@ -97,6 +95,12 @@ public class HomeFragment extends Fragment {
     CardView cardViewPeringatanKarbo;
     @BindView(R.id.cardView_peringatanPro)
     CardView cardViewPeringatanPro;
+    @BindView(R.id.pesan_nutrisi_protein)
+    TextView textViewPesanNutrisiProtein;
+    @BindView(R.id.pesan_nutrisi_karbo)
+    TextView textViewPesanNutrisiKarbo;
+    @BindView(R.id.pesan_nutrisi_lemak)
+    TextView textViewPesanNutrisiLemak;
     @BindView(R.id.cardView_peringatanLemak)
     CardView cardViewPeringatanLemak;
 
@@ -114,7 +118,7 @@ public class HomeFragment extends Fragment {
 
     SharedPreferences sharedPreferences;
 
-    int sumTotalKarbo, sumTotalProtein, sumTotalLemak, kebKalori;
+    double sumTotalKarbo, sumTotalProtein, sumTotalLemak, kebKalori;
 
     String nilaiBmr;
 
@@ -122,6 +126,13 @@ public class HomeFragment extends Fragment {
     private ArrayList<ModelOlahraga> modelOlahragaArrayList;
 
     private Toolbar toolbar;
+
+    double batasMinumumProtein;
+    double batasMaksimumProtein;
+    double batasmaksimumLemak;
+    double batasminimumLemak;
+    double batasmaksimumKarbo;
+    double batasminimumKarbo;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -142,7 +153,7 @@ public class HomeFragment extends Fragment {
 
 
             nilaiBmr = String.valueOf(sharedPreferences.getString("my_eaf", ""));
-            textViewJudulhalamanFragment.setText("Kebutuhan kalori " + nilaiBmr);
+            textViewJudulhalamanFragment.setText("Kebutuhan kalori " + nilaiBmr + " kal");
         }
 
 
@@ -155,65 +166,120 @@ public class HomeFragment extends Fragment {
 
 
         int sumTotalKalori = db.getTotalKalori();
-        textViewTotalKalori.setText(" " + sumTotalKalori + " kkal");
+        textViewTotalKalori.setText(" " + sumTotalKalori + " kal");
 
         int sumTotalKaloriDibakar = databaseHandlerOlahraga.getTotalKaloriDibakar();
-        textViewTotalKaloriDibakar.setText(" " + sumTotalKaloriDibakar + " kkal");
+        textViewTotalKaloriDibakar.setText(" " + sumTotalKaloriDibakar + " kal");
 
-        double kebKarbo = Integer.parseInt(nilaiBmr) * 0.65;
-        double kebPro = Integer.parseInt(nilaiBmr) * 0.25;
-        double kebLemak = Integer.parseInt(nilaiBmr) * 0.10;
+        double kebKarbo = Double.parseDouble(nilaiBmr) * 0.75;
+        double kebPro = Double.parseDouble(nilaiBmr) * 0.15;
+        double kebLemak = Double.parseDouble(nilaiBmr) * 0.25;
 
         sumTotalKarbo = db.getTotalKarbo();
-        textViewTotalKarbo.setText("Karbo : " + sumTotalKarbo + "/" + (int) kebKarbo);
+        textViewTotalKarbo.setText("Karbo : " + sumTotalKarbo + "/" + (int)kebKarbo + " kal");
 
         sumTotalProtein = db.getTotalProtein();
-        textViewTotalProtein.setText("Protein : " + sumTotalProtein + "/" + (int) kebPro);
+        textViewTotalProtein.setText("Protein : " + sumTotalProtein + "/" + (int) kebPro + " kal");
 
         sumTotalLemak = db.getTotalLemak();
-        textViewTotalLemak.setText("Lemak : " + sumTotalLemak + "/" + (int) kebLemak);
+        textViewTotalLemak.setText("Lemak : " + sumTotalLemak + "/" + (int) kebLemak + " kal");
 
 
         /*kode untuk set progres bar*/
         String nilaiBmr = String.valueOf(sharedPreferences.getString("my_eaf", ""));
-        int kaloriDikonsumsi, hasilProgres, kaloriDibakar, net, setProgresBar;
-        kebKalori = Integer.parseInt(nilaiBmr);
+        double kaloriDikonsumsi, hasilProgres, kaloriDibakar, net, setProgresBar;
+        kebKalori = Double.parseDouble(nilaiBmr);
         kaloriDikonsumsi = sumTotalKalori;
         kaloriDibakar = sumTotalKaloriDibakar;
         net = kaloriDikonsumsi - kaloriDibakar;
         hasilProgres = kebKalori - net;
 
-        textViewTotalKebutuhankalori.setText("sisa " + hasilProgres + " dari " + kebKalori);
+        textViewTotalKebutuhankalori.setText("sisa " + hasilProgres + " kal" + " dari " + kebKalori + " kal");
+
+        minimumProtein();
+        maksimumProtein();
+        minimumLemak();
+        minimumKarbo();
+        maksimumKarbo();
+        maksimumLemak();
         /*maks = 1000;
         setProgresBar = maks - hasilProgres;*/
         /*progresBar.setMax(kebKalori);
         progresBar.setProgress(kaloriDikonsumsi);*/
-        if (kaloriDikonsumsi > kebKalori) {
-            /*Toast.makeText(getContext(), " lebih ", Toast.LENGTH_SHORT).show();*/
-            /*int color = 0xFF00FF00;
+        /*if (kaloriDikonsumsi > kebKalori) {
+            *//*Toast.makeText(getContext(), " lebih ", Toast.LENGTH_SHORT).show();*//*
+            *//*int color = 0xFF00FF00;
             progresBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
-            progresBar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);*/
+            progresBar.getProgressDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);*//*
             cardViewPeringatanKosong.setVisibility(View.GONE);
             cardViewPesanLebihKaloriDikonsumsi.setVisibility(View.VISIBLE);
         }
         if (kaloriDibakar > kaloriDikonsumsi) {
             cardViewPeringatanKosong.setVisibility(View.GONE);
             cardViewPesanLebihKaloriDibakar.setVisibility(View.VISIBLE);
-        }
-        if (sumTotalKarbo > kebKarbo) {
+        }*/
+        if (sumTotalKarbo > batasmaksimumKarbo) {
             cardViewPeringatanKosong.setVisibility(View.GONE);
+            textViewPesanNutrisiKarbo.setText(getString(R.string.pesan_peringatan_lebih_karbo));
             cardViewPeringatanKarbo.setVisibility(View.VISIBLE);
         }
-        if (sumTotalProtein > kebPro) {
+        if (sumTotalKarbo < batasmaksimumKarbo) {
             cardViewPeringatanKosong.setVisibility(View.GONE);
+            textViewPesanNutrisiKarbo.setText(getString(R.string.pesan_peringatan_kurang_karbo));
+            cardViewPeringatanKarbo.setVisibility(View.VISIBLE);
+        }
+        if (sumTotalProtein < batasMinumumProtein) {
+            cardViewPeringatanKosong.setVisibility(View.GONE);
+            textViewPesanNutrisiProtein.setText(getString(R.string.pesan_peringatan_kurang_pro));
             cardViewPeringatanPro.setVisibility(View.VISIBLE);
         }
-        if (sumTotalLemak > kebLemak) {
+        if (sumTotalProtein > batasMaksimumProtein) {
             cardViewPeringatanKosong.setVisibility(View.GONE);
+            textViewPesanNutrisiProtein.setText(getString(R.string.pesan_peringatan_lebih_pro));
+            cardViewPeringatanPro.setVisibility(View.VISIBLE);
+        }
+        if (sumTotalLemak > batasmaksimumLemak) {
+            cardViewPeringatanKosong.setVisibility(View.GONE);
+            textViewPesanNutrisiLemak.setText(getString(R.string.pesan_peringatan_lebih_lemak));
+            cardViewPeringatanLemak.setVisibility(View.VISIBLE);
+        }
+        if (sumTotalLemak < batasminimumLemak) {
+            cardViewPeringatanKosong.setVisibility(View.GONE);
+            textViewPesanNutrisiLemak.setText(getString(R.string.pesan_peringatan_kurang_lemak));
             cardViewPeringatanLemak.setVisibility(View.VISIBLE);
         }
 
         return view;
+    }
+
+    private void minimumProtein(){
+        batasMinumumProtein = kebKalori * 10/100;
+        Log.d("batasMinumumProtein", "minimumProtein: adalah " + batasMinumumProtein);
+    }
+
+    private void maksimumProtein(){
+        batasMaksimumProtein = kebKalori * 15/100;
+        Log.d("batasMaksimumProtein", "maksimumProtein: adalah " + batasMaksimumProtein);
+    }
+
+    private void maksimumLemak(){
+        batasmaksimumLemak = kebKalori * 25/100;
+        Log.d("batasmaksimumLemak", "maksimumLemak: adalah " + batasmaksimumLemak);
+    }
+
+    private void minimumLemak(){
+        batasminimumLemak = kebKalori * 10/100;
+        Log.d("batasminimumLemak", "minimumLemak: adalah " + batasminimumLemak);
+    }
+
+    private void maksimumKarbo(){
+        batasmaksimumKarbo = kebKalori * 75/100;
+        Log.d("batasmaksimumKarbo", "maksimumKarbo: adalah " + batasmaksimumKarbo);
+    }
+
+    private void minimumKarbo(){
+        batasminimumKarbo = kebKalori * 60/100;
+        Log.d("batasminimumKarob", "minimumKarob: adalah " + batasminimumKarbo);
     }
 
 

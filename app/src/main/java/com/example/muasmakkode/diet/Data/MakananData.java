@@ -10,9 +10,6 @@ import java.util.ArrayList;
 
 public class MakananData {
 
-    /**
-     * buat kelas data
-     */
     public static String[][] data = new String[][]{
             {
                     "Abon sapi",

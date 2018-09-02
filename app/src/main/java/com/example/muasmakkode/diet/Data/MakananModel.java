@@ -8,6 +8,13 @@ import android.os.Parcelable;
  */
 
 public class MakananModel implements Parcelable {
+
+    private String nama_makanan;
+    private String ukuran_saji;
+    private String kalori_makanan;
+    private String poster_makanan;
+    private String karbo_makanan, protein_makanan, lemak_makanan;
+
     public String getNama_makanan() {
         return nama_makanan;
     }
@@ -16,10 +23,6 @@ public class MakananModel implements Parcelable {
         this.nama_makanan = nama_makanan;
     }
 
-    private String nama_makanan;
-    private String ukuran_saji;
-    private String kalori_makanan;
-
     public int getPoster_makanan() {
         return Integer.parseInt(poster_makanan);
     }
@@ -27,8 +30,6 @@ public class MakananModel implements Parcelable {
     public void setPoster_makanan(String poster_makanan) {
         this.poster_makanan = poster_makanan;
     }
-
-    private String poster_makanan;
 
     public String getKarbo_makanan() {
         return karbo_makanan;
@@ -54,9 +55,6 @@ public class MakananModel implements Parcelable {
         this.lemak_makanan = lemak_makanan;
     }
 
-    private String karbo_makanan, protein_makanan, lemak_makanan;
-
-
     public String getUkuran_saji() {
         return ukuran_saji;
     }
@@ -72,7 +70,6 @@ public class MakananModel implements Parcelable {
     public void setKalori_makanan(String kalori_makanan) {
         this.kalori_makanan = kalori_makanan;
     }
-
 
     public MakananModel() {
         super();

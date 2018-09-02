@@ -16,15 +16,11 @@ import java.util.List;
  * Created by muasmakkode on 21/09/2017.
  */
 
-public class CardViewMakananAdapter extends RecyclerView.Adapter<CardViewMakananAdapter.CardViewViewHolder>{
+public class CardViewMakananAdapter extends RecyclerView.Adapter<CardViewMakananAdapter.CardViewViewHolder> {
 
     private ArrayList<MakananModel> listMakanan;
     private Context context;
 
-    /**
-     *
-     * getter dan setter listmakanan
-     */
     public ArrayList<MakananModel> getListMakanan() {
         return listMakanan;
     }
@@ -43,26 +39,21 @@ public class CardViewMakananAdapter extends RecyclerView.Adapter<CardViewMakanan
 
     @Override
     public void onBindViewHolder(CardViewMakananAdapter.CardViewViewHolder holder, int position) {
-
         MakananModel makananModel = getListMakanan().get(position);
-
         holder.tvNama.setText(makananModel.getNama_makanan());
         holder.tvJenisMakanan.setText(makananModel.getUkuran_saji());
         holder.tvKaloriMakanan.setText(makananModel.getKalori_makanan());
-
     }
-
 
     @Override
     public int getItemCount() {
         return getListMakanan().size();
     }
 
-
     public static class CardViewViewHolder extends RecyclerView.ViewHolder {
         TextView tvNama, tvJenisMakanan, tvKaloriMakanan;
 
-        public CardViewViewHolder(View itemView){
+        public CardViewViewHolder(View itemView) {
             super(itemView);
             tvNama = itemView.findViewById(R.id.tv_item_nama_makanan);
             tvJenisMakanan = itemView.findViewById(R.id.tv_item_jenis_makanan);

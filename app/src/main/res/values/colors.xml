@@ -3,15 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#ff0004</color>
-
-
     <color name="primaryColor">#76ff03</color>
     <color name="primaryLightColor">#b0ff57</color>
     <color name="primaryDarkColor">#32cb00</color>
     <color name="secondaryColor">#18ffff</color>
     <color name="secondaryDarkColor">#00cbcc</color>
-
-    <!-- Primary color for the editor -->
-
-    <!-- Primary dark color for the editor -->
 </resources>

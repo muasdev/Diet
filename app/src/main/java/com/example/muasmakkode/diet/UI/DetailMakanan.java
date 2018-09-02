@@ -1,14 +1,10 @@
 package com.example.muasmakkode.diet.UI;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,7 +56,6 @@ public class DetailMakanan extends AppCompatActivity {
 
     DecimalFormat df = new DecimalFormat("#.##");
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,24 +101,25 @@ public class DetailMakanan extends AppCompatActivity {
 
                 try {
 
+                    double a;
+                    a = Double.parseDouble(editTextJumlahTakaran.getText().toString());
 
-                    hasil_karbo = Integer.parseInt(editTextJumlahTakaran.getText().toString())
+                    hasil_karbo = Double.parseDouble(editTextJumlahTakaran.getText().toString())
                             * Double.parseDouble(makananModel.getKarbo_makanan().toString());
 
-                    hasil_kalori = Integer.parseInt(editTextJumlahTakaran.getText().toString())
+                    hasil_kalori = Double.parseDouble(editTextJumlahTakaran.getText().toString())
                             * Double.parseDouble(makananModel.getKalori_makanan().toString());
 
-                    hasil_protein = Integer.parseInt(editTextJumlahTakaran.getText().toString())
+                    hasil_protein = Double.parseDouble(editTextJumlahTakaran.getText().toString())
                             * Double.parseDouble(makananModel.getProtein_makanan().toString());
 
-                    hasil_lemak = Integer.parseInt(editTextJumlahTakaran.getText().toString())
+                    hasil_lemak = Double.parseDouble(editTextJumlahTakaran.getText().toString())
                             * Double.parseDouble(makananModel.getLemak_makanan().toString());
 
-                    textViewDetailKaloriMakanan.setText(String.valueOf((int) hasil_kalori));
+                    textViewDetailKaloriMakanan.setText(String.valueOf(df.format(hasil_kalori)));
                     textViewDetailKarbohidrat.setText(String.valueOf(df.format(hasil_karbo)));
                     textViewDetailProtein.setText(String.valueOf(df.format(hasil_protein)));
                     textViewDetailLemak.setText(String.valueOf(df.format(hasil_lemak)));
-
 
                 } catch (Exception ex) {
 

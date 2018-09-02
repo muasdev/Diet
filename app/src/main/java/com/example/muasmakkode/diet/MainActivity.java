@@ -200,11 +200,6 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_setting) {
 
-            /*SetDataFragment setDataFragment = new SetDataFragment();
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.framelayout, setDataFragment);
-            fragmentTransaction.commit();*/
-
             Intent intent = new Intent(this, SettingFragment.class);
             startActivity(intent);
 

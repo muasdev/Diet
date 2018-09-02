@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.example.muasmakkode.diet.db.DataAdapter;
 import com.example.muasmakkode.diet.db.DatabaseHandler;
 import com.example.muasmakkode.diet.db.helper.DatabaseHandlerOlahraga;
+
+import java.text.DecimalFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,9 +49,9 @@ public class SettingFragment extends AppCompatActivity {
     Button buttonSimpan;
 
     RadioButton radioButton;
-    int BMR = 0;
+    double BMR = 0;
     double SDA = 0;
-    int EAF = 0;
+    double EAF = 0;
 
     SharedPreferences sharedPreferences;
 
@@ -58,18 +61,9 @@ public class SettingFragment extends AppCompatActivity {
     String textRadioButton;
 
     String umur, beratBadan, tinggiBadan;
+    double beratBadanIdeal;
     @BindView(R.id.radio_grup_aktifitas_harian)
     RadioGroup radioGrupAktifitasHarian;
-    /*@BindView(R.id.rb_darahA)
-    RadioButton rbDarahA;
-    @BindView(R.id.rb_darahB)
-    RadioButton rbDarahB;
-    @BindView(R.id.rb_darahAB)
-    RadioButton rbDarahAB;
-    @BindView(R.id.rb_darahO)
-    RadioButton rbDarahO;
-    @BindView(R.id.radio_grup_jenis_goldar)
-    RadioGroup radioGrupJenisGoldar;*/
     @BindView(R.id.editText_Umur)
     EditText editTextUmur;
     @BindView(R.id.editText_beratBadan)
@@ -85,20 +79,13 @@ public class SettingFragment extends AppCompatActivity {
     DatabaseHandler db;
     DatabaseHandlerOlahraga databaseHandlerOlahraga;
 
+    DecimalFormat digit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_fragment);
         sharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
-
-        /*if(sharedPreferences.contains("my_eaf")) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            Toast.makeText(this, "lengkapi form ini", Toast.LENGTH_SHORT).show();
-        }*/
 
         ButterKnife.bind(this);
     }
@@ -109,6 +96,8 @@ public class SettingFragment extends AppCompatActivity {
         beratBadan = editTextBeratBadan.getText().toString();
         umur = editTextUmur.getText().toString();
         tinggiBadan = editTextTinggiBadan.getText().toString();
+        beratBadanIdeal = (Integer.parseInt(tinggiBadan)-100) - (0.1*(Integer.parseInt(tinggiBadan)-100));
+        Log.d("bbi", "getValue: " + beratBadanIdeal);
     }
 
     public void rumusSda() {
@@ -119,14 +108,6 @@ public class SettingFragment extends AppCompatActivity {
     public void cekJenisKelamin() {
         final int selectedId = radioGrupJenisKelamin.getCheckedRadioButtonId();
         final int checkId = radioGrupAktifitasHarian.getCheckedRadioButtonId();
-        /*final int checkIdDarah = radioGrupJenisGoldar.getCheckedRadioButtonId();*/
-
-
-        /*// find the radio button by returned id
-        radioButton = (RadioButton) findViewById(selectedId);
-        // find the radio button by returned id
-        radioButton = (RadioButton) findViewById(checkId);*/
-
         radioButton = findViewById(selectedId);
 
         if (radioGrupJenisKelamin.getCheckedRadioButtonId() == -1) {
@@ -136,112 +117,112 @@ public class SettingFragment extends AppCompatActivity {
         } else if (istirahat.isChecked()) {
             if (rbPria.isChecked()) {
                 getValue();
-                BMR = (int) (66 + 13.7 * Integer.parseInt(beratBadan) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur));
+                BMR =  (66 + 13.7 * beratBadanIdeal) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (1.2 * SDA);
+                EAF =  (1.2 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             } else {
                 getValue();
-                BMR = (int) (655 + 9.6 * Integer.parseInt(beratBadan) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur));
+                BMR =  (655 + 9.6 * beratBadanIdeal) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (1.2 * SDA);
+                EAF =  (1.2 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             }
         } else if (ringanSekali.isChecked()) {
             if (rbPria.isChecked()) {
                 getValue();
-                BMR = (int) (66 + 13.7 * Integer.parseInt(beratBadan) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur));
+                BMR =  (66 + 13.7 * beratBadanIdeal) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (1.4 * SDA);
+                EAF =  (1.4 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             } else {
                 getValue();
-                BMR = (int) (655 + 9.6 * Integer.parseInt(beratBadan) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur));
+                BMR =  (655 + 9.6 * beratBadanIdeal) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (1.4 * SDA);
+                EAF =  (1.4 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             }
         } else if (ringan.isChecked()) {
             if (rbPria.isChecked()) {
                 getValue();
-                BMR = (int) (66 + 13.7 * Integer.parseInt(beratBadan) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur));
+                BMR =  (66 + 13.7 * beratBadanIdeal) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (1.5 * SDA);
+                EAF =  (1.5 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             } else {
                 getValue();
-                BMR = (int) (655 + 9.6 * Integer.parseInt(beratBadan) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur));
+                BMR =  (655 + 9.6 * beratBadanIdeal) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (1.5 * SDA);
+                EAF =  (1.5 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             }
         } else if (ringanSedang.isChecked()) {
             if (rbPria.isChecked()) {
                 getValue();
-                BMR = (int) (66 + 13.7 * Integer.parseInt(beratBadan) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur));
+                BMR =  (66 + 13.7 * beratBadanIdeal) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (1.7 * SDA);
+                EAF =  (1.7 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             } else {
                 getValue();
-                BMR = (int) (655 + 9.6 * Integer.parseInt(beratBadan) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur));
+                BMR =  (655 + 9.6 * beratBadanIdeal) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (1.6 * SDA);
+                EAF =  (1.6 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             }
         } else if (sedang.isChecked()) {
             if (rbPria.isChecked()) {
                 getValue();
-                BMR = (int) (66 + 13.7 * Integer.parseInt(beratBadan) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur));
+                BMR =  (66 + 13.7 * beratBadanIdeal) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (1.8 * SDA);
+                EAF =  (1.8 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             } else {
                 getValue();
-                BMR = (int) (655 + 9.6 * Integer.parseInt(beratBadan) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur));
+                BMR =  (655 + 9.6 * beratBadanIdeal) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (1.7 * SDA);
+                EAF =  (1.7 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             }
         } else if (berat.isChecked()) {
             if (rbPria.isChecked()) {
                 getValue();
-                BMR = (int) (66 + 13.7 * Integer.parseInt(beratBadan) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur));
+                BMR =  (66 + 13.7 * beratBadanIdeal) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (2.1 * SDA);
+                EAF =  (2.1 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             } else {
                 getValue();
-                BMR = (int) (655 + 9.6 * Integer.parseInt(beratBadan) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur));
+                BMR =  (655 + 9.6 * beratBadanIdeal) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (1.8 * SDA);
+                EAF =  (1.8 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             }
         } else if (beratSekali.isChecked()) {
             if (rbPria.isChecked()) {
                 getValue();
-                BMR = (int) (66 + 13.7 * Integer.parseInt(beratBadan) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur));
+                BMR =  (66 + 13.7 * beratBadanIdeal) + 5 * Integer.parseInt(tinggiBadan) - 6.8 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (2.3 * SDA);
+                EAF =  (2.3 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             } else {
                 getValue();
-                BMR = (int) (655 + 9.6 * Integer.parseInt(beratBadan) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur));
+                BMR =  (655 + 9.6 * beratBadanIdeal) + 1.8 * Integer.parseInt(tinggiBadan) - 4.7 * Integer.parseInt(umur);
                 rumusSda();
-                EAF = (int) (2.0 * SDA);
+                EAF =  (2.0 * SDA);
                 simpanSharedPref();
                 pesanBerhasil();
             }
@@ -254,14 +235,31 @@ public class SettingFragment extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void metodeDesimal(){
+        //  Objek untuk library DecimalFormat
+        digit = new DecimalFormat("#.##");
+//        DecimalFormat df = new DecimalFormat("#.##");
+
+
+    }
+
     public void simpanSharedPref() {
         // Store values between instances here
         sharedPreferences = getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        int totalKebutuhanKalori = EAF;
+        double totalKebutuhanKalori = EAF;
 
-        editor.putString("my_eaf", String.valueOf(totalKebutuhanKalori));
+        int angkaSignifikan = 2;
+        double temp = Math.pow(10, angkaSignifikan);
+        double y = (double) Math.round(totalKebutuhanKalori*temp)/temp;
+
+        /*metodeDesimal();
+//        DecimalFormat digit = new DecimalFormat("0.00");
+        digit.format(totalKebutuhanKalori);*/
+        Log.d("totalKebutuhanKalori", "simpanSharedPref: kalori" + y);
+
+        editor.putString("my_eaf", String.valueOf(y));
         editor.putString("berat_badan", beratBadan);
         /*editor.putString("darah", textRadioButton);*/
 
