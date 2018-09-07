@@ -104,6 +104,15 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.cardView_peringatanLemak)
     CardView cardViewPeringatanLemak;
 
+    @BindView(R.id.textView_totalKarbodikonsumsi)
+    TextView textViewtotalKarbodikonsumsi;
+    @BindView(R.id.textView_totalProteindikonsumsi)
+    TextView textViewtotalProteindikonsumsi;
+    @BindView(R.id.textView_totalLemakdikonsumsi)
+    TextView textViewtotalLemakdikonsumsi;
+    @BindView(R.id.button_lihat_hasil)
+    Button btnLihatHasil;
+
 
     private List<ModelMakanan> modelMakananList = new ArrayList<>();
     ModelMakanan modelMakanan;
@@ -127,12 +136,14 @@ public class HomeFragment extends Fragment {
 
     private Toolbar toolbar;
 
-    double batasMinumumProtein;
-    double batasMaksimumProtein;
-    double batasmaksimumLemak;
-    double batasminimumLemak;
-    double batasmaksimumKarbo;
-    double batasminimumKarbo;
+    double kebKarbobatasbawah ;
+    double kebKarbobatasatas ;
+
+    double kebProbatasbawah ;
+    double kebProbatasatas ;
+
+    double kebLemakbatasbawah ;
+    double kebLemakbatasatas ;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -171,18 +182,78 @@ public class HomeFragment extends Fragment {
         int sumTotalKaloriDibakar = databaseHandlerOlahraga.getTotalKaloriDibakar();
         textViewTotalKaloriDibakar.setText(" " + sumTotalKaloriDibakar + " kal");
 
-        double kebKarbo = Double.parseDouble(nilaiBmr) * 0.75;
-        double kebPro = Double.parseDouble(nilaiBmr) * 0.15;
-        double kebLemak = Double.parseDouble(nilaiBmr) * 0.25;
+        kebKarbobatasbawah = Double.parseDouble(nilaiBmr) * 0.60;
+        kebKarbobatasatas = Double.parseDouble(nilaiBmr) * 0.75;
+
+        kebProbatasbawah = Double.parseDouble(nilaiBmr) * 0.10;
+        kebProbatasatas = Double.parseDouble(nilaiBmr) * 0.15;
+
+        kebLemakbatasbawah = Double.parseDouble(nilaiBmr) * 0.10;
+        kebLemakbatasatas = Double.parseDouble(nilaiBmr) * 0.25;
 
         sumTotalKarbo = db.getTotalKarbo();
-        textViewTotalKarbo.setText("Karbo : " + sumTotalKarbo + "/" + (int)kebKarbo + " kal");
+        textViewTotalKarbo.setText("Karbo : " + (int)kebKarbobatasbawah + " - " + (int)kebKarbobatasatas + " kal");
+        textViewtotalKarbodikonsumsi.setText(sumTotalKarbo + " kal telah dipenuhi");
 
         sumTotalProtein = db.getTotalProtein();
-        textViewTotalProtein.setText("Protein : " + sumTotalProtein + "/" + (int) kebPro + " kal");
+        textViewTotalProtein.setText("Protein : " + (int)kebProbatasbawah + " - " + (int)kebProbatasatas + " kal");
+        textViewtotalProteindikonsumsi.setText(sumTotalProtein + " kal telah dipenuhi");
 
         sumTotalLemak = db.getTotalLemak();
-        textViewTotalLemak.setText("Lemak : " + sumTotalLemak + "/" + (int) kebLemak + " kal");
+        textViewTotalLemak.setText("Lemak : " + (int)kebLemakbatasbawah + " - " + (int)kebLemakbatasatas + " kal");
+        textViewtotalLemakdikonsumsi.setText(sumTotalLemak + " kal telah dipenuhi");
+
+        btnLihatHasil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (sumTotalKarbo < kebKarbobatasbawah){
+                    cardViewPeringatanKosong.setVisibility(View.GONE);
+                    textViewPesanNutrisiKarbo.setText(getString(R.string.pesan_peringatan_kurang_karbo));
+                    cardViewPeringatanKarbo.setVisibility(View.VISIBLE);
+                }
+                if (sumTotalKarbo > kebKarbobatasatas){
+                    cardViewPeringatanKosong.setVisibility(View.GONE);
+                    textViewPesanNutrisiKarbo.setText(getString(R.string.pesan_peringatan_lebih_karbo));
+                    cardViewPeringatanKarbo.setVisibility(View.VISIBLE);
+                }
+                if (sumTotalKarbo > kebKarbobatasbawah && sumTotalKarbo < kebKarbobatasatas){
+                    cardViewPeringatanKosong.setVisibility(View.GONE);
+                    textViewPesanNutrisiKarbo.setText(getString(R.string.pesan_peringatan_normal_karbo));
+                    cardViewPeringatanKarbo.setVisibility(View.VISIBLE);
+                }
+                if (sumTotalProtein < kebProbatasbawah) {
+                    cardViewPeringatanKosong.setVisibility(View.GONE);
+                    textViewPesanNutrisiProtein.setText(getString(R.string.pesan_peringatan_kurang_pro));
+                    cardViewPeringatanPro.setVisibility(View.VISIBLE);
+                }
+                if (sumTotalProtein > kebProbatasatas) {
+                    cardViewPeringatanKosong.setVisibility(View.GONE);
+                    textViewPesanNutrisiProtein.setText(getString(R.string.pesan_peringatan_lebih_pro));
+                    cardViewPeringatanPro.setVisibility(View.VISIBLE);
+                }
+                if (sumTotalProtein > kebProbatasbawah && sumTotalProtein < kebProbatasatas){
+                    cardViewPeringatanKosong.setVisibility(View.GONE);
+                    textViewPesanNutrisiKarbo.setText(getString(R.string.pesan_peringatan_normal_karbo));
+                    cardViewPeringatanKarbo.setVisibility(View.VISIBLE);
+                }
+                if (sumTotalLemak > kebLemakbatasatas) {
+                    cardViewPeringatanKosong.setVisibility(View.GONE);
+                    textViewPesanNutrisiLemak.setText(getString(R.string.pesan_peringatan_lebih_lemak));
+                    cardViewPeringatanLemak.setVisibility(View.VISIBLE);
+                }
+                if (sumTotalLemak < kebLemakbatasbawah) {
+                    cardViewPeringatanKosong.setVisibility(View.GONE);
+                    textViewPesanNutrisiLemak.setText(getString(R.string.pesan_peringatan_kurang_lemak));
+                    cardViewPeringatanLemak.setVisibility(View.VISIBLE);
+                }
+                if (sumTotalLemak > kebLemakbatasbawah && sumTotalLemak < kebLemakbatasatas){
+                    cardViewPeringatanKosong.setVisibility(View.GONE);
+                    textViewPesanNutrisiKarbo.setText(getString(R.string.pesan_peringatan_normal_karbo));
+                    cardViewPeringatanKarbo.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
 
 
         /*kode untuk set progres bar*/
@@ -193,15 +264,14 @@ public class HomeFragment extends Fragment {
         kaloriDibakar = sumTotalKaloriDibakar;
         net = kaloriDikonsumsi - kaloriDibakar;
         hasilProgres = kebKalori - net;
+        int angkaSignifikan = 2;
+        double temp = Math.pow(10, angkaSignifikan);
+        double y = (double) Math.round(hasilProgres*temp)/temp;
 
-        textViewTotalKebutuhankalori.setText("sisa " + hasilProgres + " kal" + " dari " + kebKalori + " kal");
 
-        minimumProtein();
-        maksimumProtein();
-        minimumLemak();
-        minimumKarbo();
-        maksimumKarbo();
-        maksimumLemak();
+        textViewTotalKebutuhankalori.setText("sisa " + y + " kal" + " dari " + kebKalori + " kal");
+
+
         /*maks = 1000;
         setProgresBar = maks - hasilProgres;*/
         /*progresBar.setMax(kebKalori);
@@ -218,68 +288,9 @@ public class HomeFragment extends Fragment {
             cardViewPeringatanKosong.setVisibility(View.GONE);
             cardViewPesanLebihKaloriDibakar.setVisibility(View.VISIBLE);
         }*/
-        if (sumTotalKarbo > batasmaksimumKarbo) {
-            cardViewPeringatanKosong.setVisibility(View.GONE);
-            textViewPesanNutrisiKarbo.setText(getString(R.string.pesan_peringatan_lebih_karbo));
-            cardViewPeringatanKarbo.setVisibility(View.VISIBLE);
-        }
-        if (sumTotalKarbo < batasmaksimumKarbo) {
-            cardViewPeringatanKosong.setVisibility(View.GONE);
-            textViewPesanNutrisiKarbo.setText(getString(R.string.pesan_peringatan_kurang_karbo));
-            cardViewPeringatanKarbo.setVisibility(View.VISIBLE);
-        }
-        if (sumTotalProtein < batasMinumumProtein) {
-            cardViewPeringatanKosong.setVisibility(View.GONE);
-            textViewPesanNutrisiProtein.setText(getString(R.string.pesan_peringatan_kurang_pro));
-            cardViewPeringatanPro.setVisibility(View.VISIBLE);
-        }
-        if (sumTotalProtein > batasMaksimumProtein) {
-            cardViewPeringatanKosong.setVisibility(View.GONE);
-            textViewPesanNutrisiProtein.setText(getString(R.string.pesan_peringatan_lebih_pro));
-            cardViewPeringatanPro.setVisibility(View.VISIBLE);
-        }
-        if (sumTotalLemak > batasmaksimumLemak) {
-            cardViewPeringatanKosong.setVisibility(View.GONE);
-            textViewPesanNutrisiLemak.setText(getString(R.string.pesan_peringatan_lebih_lemak));
-            cardViewPeringatanLemak.setVisibility(View.VISIBLE);
-        }
-        if (sumTotalLemak < batasminimumLemak) {
-            cardViewPeringatanKosong.setVisibility(View.GONE);
-            textViewPesanNutrisiLemak.setText(getString(R.string.pesan_peringatan_kurang_lemak));
-            cardViewPeringatanLemak.setVisibility(View.VISIBLE);
-        }
+
 
         return view;
-    }
-
-    private void minimumProtein(){
-        batasMinumumProtein = kebKalori * 10/100;
-        Log.d("batasMinumumProtein", "minimumProtein: adalah " + batasMinumumProtein);
-    }
-
-    private void maksimumProtein(){
-        batasMaksimumProtein = kebKalori * 15/100;
-        Log.d("batasMaksimumProtein", "maksimumProtein: adalah " + batasMaksimumProtein);
-    }
-
-    private void maksimumLemak(){
-        batasmaksimumLemak = kebKalori * 25/100;
-        Log.d("batasmaksimumLemak", "maksimumLemak: adalah " + batasmaksimumLemak);
-    }
-
-    private void minimumLemak(){
-        batasminimumLemak = kebKalori * 10/100;
-        Log.d("batasminimumLemak", "minimumLemak: adalah " + batasminimumLemak);
-    }
-
-    private void maksimumKarbo(){
-        batasmaksimumKarbo = kebKalori * 75/100;
-        Log.d("batasmaksimumKarbo", "maksimumKarbo: adalah " + batasmaksimumKarbo);
-    }
-
-    private void minimumKarbo(){
-        batasminimumKarbo = kebKalori * 60/100;
-        Log.d("batasminimumKarob", "minimumKarob: adalah " + batasminimumKarbo);
     }
 
 

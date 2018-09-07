@@ -7,188 +7,233 @@
     android:orientation="vertical"
     tools:context="com.example.muasmakkode.diet.UI.DetailMakanan">
 
-    <ScrollView
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <LinearLayout
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:background="#eeeeee"
+            android:fitsSystemWindows="true">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:layout_marginTop="@dimen/activity_margin"
+                    android:id="@+id/imageView_poster_makanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:fitsSystemWindows="true"
+                    app:layout_collapseMode="parallax" />
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <ImageView
-                android:id="@+id/imageView_poster_makanan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="24dp">
-
-                <TextView
-                    android:id="@+id/takaranSaji"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Takaran saji"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/textView_jumlahurt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/takaranSaji"
-                    android:text="jumlah urt"
-                    android:textSize="18sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:text="jumlah sajian"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                    android:textSize="24sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/editText_jumlah_takaran"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:hint="1"
-                    android:inputType="number|numberDecimal" />
 
-            </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="24dp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="48dp">
+                        <TextView
+                            android:id="@+id/takaranSaji"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Takaran saji"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                            android:textSize="24sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="kalori"
-                    android:textSize="18sp" />
+                        <TextView
+                            android:id="@+id/textView_jumlahurt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/takaranSaji"
+                            android:text="jumlah urt"
+                            android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/textView_detail_kalori_makanan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:paddingRight="10dp"
-                    android:text="kal"
-                    android:textSize="18sp" />
+                    </RelativeLayout>
 
-            </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="2dp"
-                android:background="#000000" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dp"
+                            android:text="jumlah sajian"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                            android:textSize="24sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/editText_jumlah_takaran"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:hint="1"
+                            android:inputType="number|numberDecimal" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="karbohidrat"
-                    android:textSize="18sp" />
+                    </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/textView_detail_karbohidrat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:paddingRight="10dp"
-                    android:text="gr"
-                    android:textSize="18sp" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="48dp">
 
-            </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:text="kalori"
+                            android:textSize="18sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="2dp"
-                android:background="#000000" />
+                        <TextView
+                            android:id="@+id/textView_detail_kalori_makanan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:paddingRight="10dp"
+                            android:text="kal"
+                            android:textSize="18sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="Protein"
-                    android:textSize="18sp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="2dp"
+                        android:background="#000000" />
 
-                <TextView
-                    android:id="@+id/textView_detail_protein"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:paddingRight="10dp"
-                    android:text="gr"
-                    android:textSize="18sp" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-            </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:text="karbohidrat"
+                            android:textSize="18sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="2dp"
-                android:background="#000000" />
+                        <TextView
+                            android:id="@+id/textView_detail_karbohidrat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:paddingRight="10dp"
+                            android:text="gr"
+                            android:textSize="18sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="Lemak"
-                    android:textSize="18sp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="2dp"
+                        android:background="#000000" />
 
-                <TextView
-                    android:id="@+id/textView_detail_lemak"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:paddingRight="10dp"
-                    android:text="gr"
-                    android:textSize="18sp" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-            </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:text="Protein"
+                            android:textSize="18sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="2dp"
-                android:background="#000000" />
+                        <TextView
+                            android:id="@+id/textView_detail_protein"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:paddingRight="10dp"
+                            android:text="gr"
+                            android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/button_tambah"
-                style="@style/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:text="Tambah" />
+                    </RelativeLayout>
 
-        </LinearLayout>
-    </ScrollView>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="2dp"
+                        android:background="#000000" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:text="Lemak"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/textView_detail_lemak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:paddingRight="10dp"
+                            android:text="gr"
+                            android:textSize="18sp" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="2dp"
+                        android:background="#000000" />
+
+                    <Button
+                        android:id="@+id/button_tambah"
+                        style="@style/button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:text="Tambah" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
 </LinearLayout>

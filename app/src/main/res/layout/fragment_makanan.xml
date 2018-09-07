@@ -6,12 +6,26 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycle_view_makanan"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    </android.support.v7.widget.RecyclerView>
+        <!--<SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="cari makanan">
+
+        </SearchView>-->
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view_makanan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 
 </FrameLayout>

@@ -5,251 +5,256 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp"
+    android:id="@+id/layout_diagnosa"
     tools:context="com.example.muasmakkode.diet.SettingFragment">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="16dp">
+        app:cardCornerRadius="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/secondaryDarkColor"
+                android:layout_marginBottom="@dimen/activity_margin"
+                android:background="@color/primaryColor"
                 android:text="Silahkan isi form dibawah ini"
                 android:textAlignment="center"
-                android:textColor="#000"
-                android:layout_marginBottom="@dimen/activity_margin"/>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/text_in_layout_hint_Style">
-
-                <EditText
-                    android:id="@+id/editText_Nama"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nama" />
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Jenis Kelamin"
-                android:layout_marginTop="@dimen/activity_margin"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
-
-            <RadioGroup
-                android:id="@+id/radio_grup_jenis_kelamin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-
-                <RadioButton
-                    android:id="@+id/rb_pria"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="Pria" />
-
-                <RadioButton
-                    android:id="@+id/rb_wanita"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/rb_pria"
-                    android:checked="false"
-                    android:text="Wanita" />
-
-            </RadioGroup>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/daftar_nama_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/text_in_layout_hint_Style">
-
-                <EditText
-                    android:id="@+id/editText_Umur"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_user_umur"
-                    android:inputType="number" />
-            </android.support.design.widget.TextInputLayout>
-
-            <!--<android.support.design.widget.TextInputLayout
-                android:id="@+id/editText_Umur"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Umur"
-                android:inputType="number" />-->
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/text_in_layout_hint_Style">
-
-                <EditText
-                    android:id="@+id/editText_beratBadan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Berat badan"
-                    android:inputType="number" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/text_in_layout_hint_Style">
-
-                <EditText
-                    android:id="@+id/editText_tinggiBadan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Tinggi badan"
-                    android:inputType="number" />
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@color/secondaryDarkColor"
-                android:text="Aktivitas harian"
-                android:textAlignment="center"
-                android:textColor="#000" />
-
-            <!--<TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Pilih kategori aktivitas harian . . ."
-                android:textColor="#000"
-                android:textSize="14sp" />-->
-
-
-            <RadioGroup
-                android:id="@+id/radio_grup_aktifitas_harian"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/istirahat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Istirahat (tidur, berbaring, duduk)" />
-
-                <RadioButton
-                    android:id="@+id/ringanSekali"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ringan sekali (Menulis, mengetik)" />
-
-                <RadioButton
-                    android:id="@+id/ringan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ringan (menyapu, menjahit, mencuci piring, menghias ruangan)" />
-
-                <RadioButton
-                    android:id="@+id/ringanSedang"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ringan - Sedang (Sekolah, kuliah, kerja kantor)" />
-
-                <RadioButton
-                    android:id="@+id/sedang"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sedang (Mencangkul, menyabit rumput)" />
-
-                <RadioButton
-                    android:id="@+id/berat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Berat (Menggergaji pohon dengan gergaji tangan)" />
-
-                <RadioButton
-                    android:id="@+id/beratSekali"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Berat Sekali (Mendaki gunung, menarik becak)" />
-
-            </RadioGroup>
-
-            <!--<TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:background="#4052b5"
-                android:text="Golongan Darah"
-                android:textColor="#000"
-                android:textSize="18sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/primaryTextColor" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_margin="@dimen/activity_margin"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintTextAppearance="@style/text_in_layout_hint_Style">
+
+                    <EditText
+                        android:id="@+id/editText_Nama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama" />
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_margin"
+                    android:text="Jenis Kelamin"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption" />
 
                 <RadioGroup
-                    android:id="@+id/radio_grup_jenis_goldar"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/radio_grup_jenis_kelamin"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="horizontal">
 
 
                     <RadioButton
-                        android:id="@+id/rb_darahA"
+                        android:id="@+id/rb_pria"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:checked="false"
-                        android:text="A" />
+                        android:text="Pria" />
 
                     <RadioButton
-                        android:id="@+id/rb_darahB"
+                        android:id="@+id/rb_wanita"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_toRightOf="@id/rb_pria"
                         android:checked="false"
-                        android:text="B" />
-
-                    <RadioButton
-                        android:id="@+id/rb_darahAB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:checked="false"
-                        android:text="AB" />
-
-                    <RadioButton
-                        android:id="@+id/rb_darahO"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:checked="false"
-                        android:text="O" />
+                        android:text="Wanita" />
 
                 </RadioGroup>
 
-            </LinearLayout>-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/daftar_nama_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintTextAppearance="@style/text_in_layout_hint_Style">
 
-            <Button
-                android:id="@+id/button_simpan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/button"
-                android:layout_marginTop="@dimen/activity_margin"
-                android:text="Simpan" />
+                    <EditText
+                        android:id="@+id/editText_Umur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_user_umur"
+                        android:inputType="number" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintTextAppearance="@style/text_in_layout_hint_Style">
+
+                    <EditText
+                        android:id="@+id/editText_beratBadan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Berat badan"
+                        android:inputType="number" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintTextAppearance="@style/text_in_layout_hint_Style">
+
+                    <EditText
+                        android:id="@+id/editText_tinggiBadan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tinggi badan"
+                        android:inputType="number" />
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/primaryColor"
+                    android:text="Aktivitas harian"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@color/primaryTextColor" />
+
+                <!--<TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Pilih kategori aktivitas harian . . ."
+                    android:textColor="#000"
+                    android:textSize="14sp" />-->
+
+
+                <RadioGroup
+                    android:id="@+id/radio_grup_aktifitas_harian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/istirahat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Istirahat (tidur, berbaring, duduk)" />
+
+                    <RadioButton
+                        android:id="@+id/ringanSekali"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ringan sekali (Menulis, mengetik)" />
+
+                    <RadioButton
+                        android:id="@+id/ringan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ringan (menyapu, menjahit, mencuci piring, menghias ruangan)" />
+
+                    <RadioButton
+                        android:id="@+id/ringanSedang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ringan - Sedang (Sekolah, kuliah, kerja kantor)" />
+
+                    <RadioButton
+                        android:id="@+id/sedang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sedang (Mencangkul, menyabit rumput)" />
+
+                    <RadioButton
+                        android:id="@+id/berat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Berat (Menggergaji pohon dengan gergaji tangan)" />
+
+                    <RadioButton
+                        android:id="@+id/beratSekali"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Berat Sekali (Mendaki gunung, menarik becak)" />
+
+                </RadioGroup>
+
+                <!--<TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#4052b5"
+                    android:text="Golongan Darah"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:id="@+id/radio_grup_jenis_goldar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+
+                        <RadioButton
+                            android:id="@+id/rb_darahA"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="false"
+                            android:text="A" />
+
+                        <RadioButton
+                            android:id="@+id/rb_darahB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="false"
+                            android:text="B" />
+
+                        <RadioButton
+                            android:id="@+id/rb_darahAB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="false"
+                            android:text="AB" />
+
+                        <RadioButton
+                            android:id="@+id/rb_darahO"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="false"
+                            android:text="O" />
+
+                    </RadioGroup>
+
+                </LinearLayout>-->
+
+                <Button
+                    android:id="@+id/button_simpan"
+                    style="@style/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_margin"
+                    android:text="Simpan" />
+            </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

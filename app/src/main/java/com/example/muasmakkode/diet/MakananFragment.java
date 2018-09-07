@@ -11,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.muasmakkode.diet.Data.CardViewMakananAdapter;
 import com.example.muasmakkode.diet.Data.ItemClickSupport;
@@ -21,6 +24,7 @@ import com.example.muasmakkode.diet.Data.MakananModel;
 import com.example.muasmakkode.diet.UI.DetailMakanan;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,6 +39,8 @@ public class MakananFragment extends Fragment {
 
     @BindView(R.id.recycle_view_makanan)
     RecyclerView recycleViewMakanan;
+//    @BindView(R.id.search_view)
+//    SearchView searchView;
     Unbinder unbinder;
     private ArrayList<MakananModel> list;
 
@@ -79,7 +85,26 @@ public class MakananFragment extends Fragment {
         } else
             list.addAll(MakananDataGolonganDarahA.getListData());*/
 
+
         showRecyclerCardView();
+
+
+        /*searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+//                adapter.getFilter().filter(query);
+//                searchView.clearFocus();
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });*/
+
+
 
         return view;
     }

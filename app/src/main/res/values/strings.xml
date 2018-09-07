@@ -32,17 +32,23 @@
     <string name="pesan_peringatan_lebih_karbo">Konsumsi karbohidrat anda berlebih
     \n kurangi konsumsi makanan yang mengandung karbohidrat tinggi
     </string>
+    <string name="pesan_peringatan_normal_karbo">Konsumsi karbohidrat anda normal
+    </string>
     <string name="pesan_peringatan_kurang_karbo">Konsumsi karbohidrat anda masih di bawah batas minimum
     \n perbanyak konsumsi makanan yang mengandung karbohidrat tinggi
     </string>
     <string name="pesan_peringatan_lebih_pro">Konsumsi protein anda berlebih
     \n kurangi konsumsi makanan yang mengandung protein tinggi
     </string>
+    <string name="pesan_peringatan_normal_pro">Konsumsi protein anda normal
+    </string>
     <string name="pesan_peringatan_kurang_pro">Konsumsi protein anda masih di bawah batas minimum
     \n perbanyak konsumsi makanan yang mengandung protein tinggi
     </string>
     <string name="pesan_peringatan_lebih_lemak">Konsumsi lemak anda berlebih
     \n kurangi konsumsi makanan yang mengandung lemak tinggi
+    </string>
+    <string name="pesan_peringatan_normal_lemak">Konsumsi lemak anda normal
     </string>
     <string name="pesan_peringatan_kurang_lemak">Konsumsi lemak anda masih di bawah batas minimum
     \n perbanyak konsumsi makanan yang mengandung lemak tinggi

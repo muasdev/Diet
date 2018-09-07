@@ -1,11 +1,16 @@
 package com.example.muasmakkode.diet.UI;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -83,10 +88,10 @@ public class DetailMakanan extends AppCompatActivity {
 
  /*textViewDetailNamaMakanan.setText(makananModel.getNama_makanan()); //kode set textview dari model*/
 
-        textViewDetailKaloriMakanan.setText(makananModel.getKalori_makanan());
-        textViewDetailKarbohidrat.setText(makananModel.getKarbo_makanan());
-        textViewDetailProtein.setText(makananModel.getProtein_makanan());
-        textViewDetailLemak.setText(makananModel.getLemak_makanan());
+        textViewDetailKaloriMakanan.setText(makananModel.getKalori_makanan() + " kal");
+        textViewDetailKarbohidrat.setText(makananModel.getKarbo_makanan() + " kal");
+        textViewDetailProtein.setText(makananModel.getProtein_makanan() + " kal");
+        textViewDetailLemak.setText(makananModel.getLemak_makanan() + " kal");
         textViewJumlahurt.setText(makananModel.getUkuran_saji());
         imageViewPosterMakanan.setImageResource(makananModel.getPoster_makanan());
 
@@ -116,10 +121,10 @@ public class DetailMakanan extends AppCompatActivity {
                     hasil_lemak = Double.parseDouble(editTextJumlahTakaran.getText().toString())
                             * Double.parseDouble(makananModel.getLemak_makanan().toString());
 
-                    textViewDetailKaloriMakanan.setText(String.valueOf(df.format(hasil_kalori)));
-                    textViewDetailKarbohidrat.setText(String.valueOf(df.format(hasil_karbo)));
-                    textViewDetailProtein.setText(String.valueOf(df.format(hasil_protein)));
-                    textViewDetailLemak.setText(String.valueOf(df.format(hasil_lemak)));
+                    textViewDetailKaloriMakanan.setText(String.valueOf(df.format(hasil_kalori)) + " kal");
+                    textViewDetailKarbohidrat.setText(String.valueOf(df.format(hasil_karbo)) + " kal");
+                    textViewDetailProtein.setText(String.valueOf(df.format(hasil_protein)) + " kal");
+                    textViewDetailLemak.setText(String.valueOf(df.format(hasil_lemak)) + " kal");
 
                 } catch (Exception ex) {
 
@@ -145,13 +150,53 @@ public class DetailMakanan extends AppCompatActivity {
 
     //Insert data to the database
     private void addContact() {
-        getValues();
 
-        db.addContacts(new ModelMakanan(nama, urt, kalori, karbohidrat, protein, lemak));
-        Toast.makeText(this, "Berhasil menambahkan " + nama + " ke dalam daftar", Toast.LENGTH_LONG).show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        builder.setTitle("Tambah makanan ini ?");
+//        builder.setMessage("");
+
+        builder.setPositiveButton("TAMBAH", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing but close the dialog
+                getValues();
+
+                db.addContacts(new ModelMakanan(nama, urt, kalori, karbohidrat, protein, lemak));
+//                Toast.makeText(getApplicationContext(), "Berhasil menambahkan " + nama + " ke dalam daftar makanan yang anda konsumsi", Toast.LENGTH_LONG).show();
+
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.custom_toast,
+                        (ViewGroup) findViewById(R.id.custom_toast_container));
+
+                TextView text = (TextView) layout.findViewById(R.id.text);
+                text.setText("Berhasil menambahkan " + nama + " ke dalam daftar makanan yang anda konsumsi");
+
+                Toast toast = new Toast(getApplicationContext());
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setView(layout);
+                toast.show();
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("BATAL", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
+
     }
 
 }
