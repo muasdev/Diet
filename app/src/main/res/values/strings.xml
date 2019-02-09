@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Diet</string>
+    <string name="app_name">Penghitung Kalori</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -18,8 +18,8 @@
     <string name="unit_user_tinggi">cm</string>
     <string name="nama_makanan">Nama makanan</string>
     <string name="rb_text_panahan">Panahan</string>
-    <string name="isiTextViewEmptyDataOlahraga">Tap tombol “+” di bawah untuk menambahkan data</string>
-    <string name="isiTextViewEmptyDataMakanan2">Tap tombol “+” di bawah untuk menambahkan data</string>
+    <string name="isiTextViewEmptyDataOlahraga">Belum Ada Data Olahraga</string>
+    <string name="isiTextViewEmptyDataMakanan2">Belum Ada Data Makanan</string>
     <string name="pesan_lebih_kalori">Hati-hati mengonsumsi kalori terlalu banyak karena memiliki banyak dampak
         yang buruk bagi kesehatan. Jaga keseimbangan energi dalam tubuh dengan
     seimbang kalori yang dimakan dan kalori yang digunakan (dibakar).

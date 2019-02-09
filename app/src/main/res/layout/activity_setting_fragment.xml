@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="16dp"
     android:id="@+id/layout_diagnosa"
-    tools:context="com.example.muasmakkode.diet.SettingFragment">
+    tools:context="com.muasdiet.muasmakkode.diet.SettingFragment">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:text="Silahkan isi form dibawah ini"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/primaryTextColor" />
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -127,7 +127,7 @@
                     android:text="Aktivitas harian"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@color/primaryTextColor" />
+                    android:textColor="@color/white" />
 
                 <!--<TextView
                     android:layout_width="match_parent"
@@ -253,6 +253,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_margin"
+                    android:textColor="@color/white"
                     android:text="Simpan" />
             </LinearLayout>
         </LinearLayout>

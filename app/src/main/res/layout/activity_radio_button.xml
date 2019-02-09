@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    tools:context="com.muasdiet.muasmakkode.diet.RadioButton.RadioButtonActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pilih salah satu . . ."
+        android:textColor="#000"
+        android:textSize="14sp" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/radio_grup_olahraga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/balapSepeda1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Balap sepeda 9km/jam" />
+
+                <RadioButton
+                    android:id="@+id/balapSepeda2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Balap sepeda 15km/jam" />
+
+                <RadioButton
+                    android:id="@+id/balapSepeda3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Balap sepeda 29km/jam" />
+
+                <RadioButton
+                    android:id="@+id/balapSepeda4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Balap Sepeda Bertanding" />
+
+                <RadioButton
+                    android:id="@+id/bulutangkis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bulutangkis" />
+
+                <RadioButton
+                    android:id="@+id/bolaBasket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bola Basket" />
+
+                <RadioButton
+                    android:id="@+id/bolaVoli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bola Voli" />
+
+                <RadioButton
+                    android:id="@+id/beladiri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Beladiri" />
+
+                <RadioButton
+                    android:id="@+id/dayung"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dayung" />
+
+                <RadioButton
+                    android:id="@+id/golf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Golf" />
+
+                <RadioButton
+                    android:id="@+id/hoki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hoki" />
+
+                <RadioButton
+                    android:id="@+id/judo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Judo" />
+
+                <RadioButton
+                    android:id="@+id/jalanKaki1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jalan kaki 10 menit/km" />
+
+                <RadioButton
+                    android:id="@+id/jalanKaki2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jalan kaki 8 menit/km" />
+
+                <RadioButton
+                    android:id="@+id/jalanKaki3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jalan kaki 5 menit/km" />
+
+                <RadioButton
+                    android:id="@+id/lari1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lari 5,5 menit/km" />
+
+                <RadioButton
+                    android:id="@+id/lari2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lari 5 menit/km" />
+
+                <RadioButton
+                    android:id="@+id/lari3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lari 4,5 menit/km" />
+
+                <RadioButton
+                    android:id="@+id/lari4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lari 4 menit/km" />
+
+                <RadioButton
+                    android:id="@+id/latihanbeban"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Latihan Beban" />
+
+                <RadioButton
+                    android:id="@+id/panahan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rb_text_panahan" />
+
+                <RadioButton
+                    android:id="@+id/renangGbebas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Renang Gaya bebas" />
+
+                <RadioButton
+                    android:id="@+id/renangGpunggung"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Renang Gaya punggung" />
+
+                <RadioButton
+                    android:id="@+id/renangGdada"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Renang Gaya dada" />
+
+                <RadioButton
+                    android:id="@+id/senam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Senam" />
+
+                <RadioButton
+                    android:id="@+id/senamAeroPemula"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Senam aerobik pemula" />
+
+                <RadioButton
+                    android:id="@+id/senamAeroTerampil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Senam aerobik terampil" />
+
+                <RadioButton
+                    android:id="@+id/sepakBola"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sepakbola" />
+
+                <RadioButton
+                    android:id="@+id/tenisLapRekreasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tenis Lapangan Rekreasi" />
+
+                <RadioButton
+                    android:id="@+id/tenisLapBertanding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tenis Lapangan bertanding" />
+
+                <RadioButton
+                    android:id="@+id/tenisMeja"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tenis Meja" />
+
+                <RadioButton
+                    android:id="@+id/tinjuLatihan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tinju latihan" />
+
+                <RadioButton
+                    android:id="@+id/tinjuBertanding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tinju bertanding" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editText_lama_latihan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="durasi waktu latihan (menit)"
+            android:inputType="number" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button_reset_olahraga"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/button"
+            android:layout_marginRight="8dp"
+            android:text="ulang" />
+
+
+        <Button
+            style="@style/button"
+            android:layout_weight="1"
+            android:id="@+id/button_simpan_olahraga"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="simpan" />
+
+    </LinearLayout>
+</LinearLayout>

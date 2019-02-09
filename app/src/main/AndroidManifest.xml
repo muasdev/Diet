@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.muasmakkode.diet">
+    package="com.muasdiet.muasmakkode.diet">
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_dietapp"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_dietapp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.muasdiet.muasmakkode.diet.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,36 +19,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.ContohBarActivity" />
-        <activity android:name=".KonsulAwalActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".Coba" />
-        <activity android:name=".DetilAktifitas" />
+        <activity android:name="com.muasdiet.muasmakkode.diet.KonsulAwalActivity" />
+        <activity android:name="com.muasdiet.muasmakkode.diet.LoginActivity" />
+        <activity android:name="com.muasdiet.muasmakkode.diet.Coba" />
+        <activity android:name="com.muasdiet.muasmakkode.diet.DetilAktifitas" />
         <activity
-            android:name=".UI.DetailMakanan"
+            android:name="com.muasdiet.muasmakkode.diet.UI.DetailMakanan"
             android:label="Detail Makanan" />
-        <activity android:name=".InfoDev.InfoDevActivity" />
+        <activity android:name="com.muasdiet.muasmakkode.diet.InfoDev.InfoDevActivity" />
         <activity
-            android:name=".RadioButton.RadioButtonActivity"
+            android:name="com.muasdiet.muasmakkode.diet.RadioButton.RadioButtonActivity"
             android:label="@string/title_olahraga_activity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".Awal.KonsulKeduaActivity" />
-        <activity android:name=".Awal.KonsulKetigaActivity" />
-        <activity android:name=".UI.DetailKonsumsi" />
+            android:parentActivityName="com.muasdiet.muasmakkode.diet.MainActivity" />
         <activity
-            android:name=".SettingFragment"
+            android:name="com.muasdiet.muasmakkode.diet.SettingFragment"
             android:label="Diagnosa"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".Awal.KonsulActivity" />
+            android:parentActivityName="com.muasdiet.muasmakkode.diet.MainActivity" />
+        <activity android:name="com.muasdiet.muasmakkode.diet.Awal.KonsulActivity" />
         <activity
-            android:name=".fab"
-            android:label="@string/title_activity_fab"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".UI.TentangAplikasi"
+            android:name="com.muasdiet.muasmakkode.diet.UI.TentangAplikasi"
             android:label="Tentang Aplikasi"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".SplashScreen"></activity>
+            android:parentActivityName="com.muasdiet.muasmakkode.diet.MainActivity" />
     </application>
 
 </manifest>
